@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JLPT N3-N2 Bridge: 23-Day Challenge</title>
+  <style>
+    :root {
+      --primary: #e11d48;
+      --primary-hover: #be123c;
+      --bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #1f2937;
+      --correct: #10b981;
+      --correct-bg: #d1fae5;
+      --wrong: #ef4444;
+      --wrong-bg: #fee2e2;
+    }
+
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 20px; background: var(--bg); color: var(--text); line-height: 1.6; }
+    h1 { text-align: center; color: var(--primary); margin-bottom: 20px; }
+    
+    .days { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px auto; justify-content: center; max-width: 1000px; }
+    .day-btn { padding: 10px 14px; background: var(--card-bg); border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+    .day-btn:hover { border-color: var(--primary); }
+    .day-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    
+    .card { background: var(--card-bg); padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); max-width: 800px; margin: 20px auto; }
+    .progress-text { font-size: 0.9rem; color: #6b7280; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; }
+    
+    .reading-passage { background: #f3f4f6; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 6px solid #9ca3af; font-size: 1.1rem; white-space: pre-line; }
+    .question { font-size: 1.3rem; margin: 20px 0; font-weight: 500; }
+    .options { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+    
+    .options button { 
+      text-align: left; width: 100%; padding: 16px; font-size: 1.05rem; 
+      background: var(--card-bg); border: 2px solid #e5e7eb; border-radius: 12px; 
+      cursor: pointer; transition: all 0.2s; font-weight: 500;
+    }
+    .options button:hover:not(:disabled) { border-color: var(--primary); background: #fff5f5; }
+    .options button:disabled { cursor: not-allowed; }
+    
+    .options button.correct-choice { background: var(--correct-bg); border-color: var(--correct); color: #065f46; }
+    .options button.wrong-choice { background: var(--wrong-bg); border-color: var(--wrong); color: #991b1b; }
+    
+    .feedback { margin-top: 20px; padding: 18px; border-radius: 12px; font-size: 1.1rem; animation: fadeIn 0.3s ease; }
+    .feedback.correct { background: var(--correct-bg); color: #065f46; border-left: 5px solid var(--correct); }
+    .feedback.wrong { background: var(--wrong-bg); color: #991b1b; border-left: 5px solid var(--wrong); }
+    
+    .nav-container { margin-top: 25px; display: flex; gap: 15px; }
+    .nav-container button { flex: 1; padding: 14px; font-size: 1.1rem; border: none; border-radius: 10px; cursor: pointer; background: var(--primary); color: white; font-weight: bold; transition: background 0.2s; }
+    .nav-container button:hover { background: var(--primary-hover); }
+    .nav-container button:disabled { background: #d1d5db; cursor: not-allowed; color: #9ca3af; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+  <h1>📖 JLPT N3 / N2 Bridge 23-Day Challenge</h1>
+  <div class="days" id="daysNav"></div>
+
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2 id="dayTitle" style="margin: 0;">Day 1</h2>
+      <div class="progress-text" id="progressText">Question 1 of 50</div>
+    </div>
+    
+    <div id="quizContainer"></div>
+  </div>
+
+  <script>
+    const daysData = {
+      1: {
+        title: "Day 1 - N3/N2 Grammar & Reading",
+        mcqs: [
+          // GRAMMAR & PARTICLES (1 - 47)
+          { q: "1. いくら安くても、買いたくないものは買う______。 ", options: ["A. わけにはいかない", "B. わけがない", "C. はずがない", "D. にすぎない"], ans: 0, expl: "<b>~わけにはいかない</b> (N3/N2): စိတ္တဇသဘော သို့မဟုတ် လူမှုရေးစည်းကမ်းအရ 'လုပ်လို့မဖြစ်ဘူး / မလုပ်နိုင်ဘူး'။ 'ဘယ်လောက်ပဲတန်တန်၊ မဝယ်ချင်တဲ့အရာကိုတော့ ဝယ်လို့မဖြစ်ဘူး။'" },
+          { q: "2. 彼は日本に5年も住んでいる______、日本語がほとんど話せない。", options: ["A. からといって", "B. からには", "C. ながらも", "D. つつある"], ans: 2, expl: "<b>~ながらも</b> (N2): '... ဖြစ်သော်လည်း' (矛盾 - ရှေ့နောက်ဆန့်ကျင်မှု)။ 'သူက ဂျပန်မှာ ၅ နှစ်တောင် နေခဲ့သော်လည်း ဂျပန်စာကို လုံးဝမပြောနိုင်ရှာဘူး။'" },
+          { q: "3. 留学する______、しっかり目的を持って勉強したい。", options: ["A. からには", "B. からといって", "C. あまり", "D. たびに"], ans: 0, expl: "<b>~からには</b> (N3/N2): '... ဖြစ်တဲ့အထက်ကတော့/ဖြစ်ပြီးမှတော့' (ပြင်းထန်တဲ့ ဆုံးဖြတ်ချက်)။ 'နိုင်ငံခြားပညာတော်သင် သွားမယ့်အထက်ကတော့ ရည်မှန်းချက်သေချာထားပြီး စာလုပ်ချင်တယ်။'" },
+          { q: "4. 日本の人口は、これからますます減少していき______。 ", options: ["A. かねない", "B. つつある", "C. にすぎない", "D. かけている"], ans: 1, expl: "<b>~つつある</b> (N2): '... ဖြစ်ပွားနေဆဲ ဖြစ်သည်' (지속적인 변화)။ 'ဂျပန်နိုင်ငံရဲ့ လူဦးရေဟာ အခုကစပြီး ပိုမိုလျော့နည်းလာနေဆဲ ဖြစ်ပါတယ်။'" },
+          { q: "5. N2の試験は難しいが、毎日の努力______合格できるはずだ。", options: ["A. 次第で", "B. を通して", "C. に応じて", "D. によって"], ans: 0, expl: "<b>~次第で (しだいで)</b> (N2): '... အပေါ်မှာ မူတည်ပြီး'။ 'နေ့စဉ် ကြိုးစားအားထုတ်မှုအပေါ် မူတည်ပြီး အောင်မြင်နိုင်မှာပါ။'" },
+          { q: "6. 大雨の______、電車のダイヤが大幅に乱れています。", options: ["A. せいで", "B. おかげで", "C. ために", "D. 影響によって"], ans: 2, expl: "<b>~ために</b> (N3): ဤနေရာတွင် Objective ဖြစ်ရပ် (ရထားနောက်ကျခြင်း) အတွက် 'အကြောင်းရင်း' ကို တရားဝင်စာသားဖြင့် ပြရာတွင် သုံးသည်။" },
+          { q: "7. 料理が下手な______、毎日自分で弁当を作っています。", options: ["A. ながらも", "B. くせに", "C. のに", "D. からといって"], ans: 0, expl: "<b>~ながらも</b>: 'ချက်ပြုတ်တာ ညံ့ဖျင်းသော်လည်းပဲ နေ့တိုင်း ကိုယ်တိုင် ထမင်းဘူး လုပ်စားပါတယ်။'" },
+          { q: "8. 怒った______、そんなひどいことを言うべきではない。", options: ["A. からといって", "B. からには", "C. あまりに", "D. ついでに"], ans: 0, expl: "<b>~からといって</b> (N3/N2): '... ဆိုရုံနဲ့တင် / ... ဖြစ်ရုံနဲ့တော့' (နောက်က အငြင်းလိုက်လေ့ရှိ)။ 'စိတ်ဆိုးရုံနဲ့တင် အဲဒီလို ရိုင်းစိုင်းတဲ့စကားမျိုး မပြောသင့်ဘူး။'" },
+          { q: "9. 先生に相談した______、留学を決めた。", options: ["A. うえで", "B. ついでに", "C. とたんに", "D. 次第で"], ans: 0, expl: "<b>~うえで</b> (N3/N2): '... ပြီးတဲ့နောက်မှ' (ရှေ့ကအချက်ကို အရင်လုပ်ပြီးမှ ဆုံးဖြတ်တာ)။ 'ဆရာနဲ့ တိုင်ပင်ပြီးတဲ့နောက်မှ ကျောင်းသွားတက်ဖို့ ဆုံးဖြတ်ခဲ့တယ်။'" },
+          { q: "10. インターネットの普及______、世界中の情報がすぐ手に入るようになった。", options: ["A. に伴って", "B. に対して", "C. に比べて", "D. に応じて"], ans: 0, expl: "<b>~に伴って (にともなって)</b> (N2): '... နဲ့အမျှ / ... နဲ့အတူတူ ပြောင်းလဲလာတာ'။ 'အင်တာနက် ခေတ်စားလာတာနဲ့အမျှ ကမ္ဘာ့သတင်းတွေကို ချက်ချင်းရလာတယ်။'" },
+          { q: "11. 体調が悪い______、無理をして仕事に行くのはよくない。", options: ["A. からといって", "B. からには", "C. のだから", "D. つつも"], ans: 2, expl: "<b>~のだから</b> (N3): '... ဖြစ်တဲ့အတွက်ကြောင့်မို့' (သိသာတဲ့ အကြောင်းပြချက်)။ 'နေမကောင်းဖြစ်နေတာမို့လို့ ဇွတ်မှိတ်ပြီး အလုပ်သွားတာ မကောင်းဘူး။'" },
+          { q: "12. このカバンはデザインが美しい______、とても軽くて使いやすい。", options: ["A. ばかりか", "B. に限らず", "C. を問わず", "D. 反面"], ans: 0, expl: "<b>~ばかりか</b> (N3/N2): '... တင်မကဘဲ'။ 'ဒီအိတ်က ဒီဇိုင်းလှရုံတင်မကဘဲ ပေါ့ပါးပြီး သုံးရတာလည်း လွယ်ကူတယ်။'" },
+          { q: "13. 自分のミスなのだから、自分で責任を取る______だ。", options: ["A. わけ", "B. べき", "C. はず", "D. こと"], ans: 1, expl: "<b>~べきだ</b> (N3): 'လုပ်သင့်တယ် / လုပ်ဖို့ တာဝန်ရှိတယ်'။ 'ကိုယ့်အမှားဖြစ်လို့ ကိုယ်တိုင် တာဝန်ယူသင့်ပါတယ်။'" },
+          { q: "14. 彼は親に頼る______、アルバイトをして学費を払っている。", options: ["A. ことなく", "B. ないで", "C. ずに", "D. なしに"], ans: 0, expl: "<b>~ことなく</b> (N2): '... မလုပ်ဘဲနဲ့' (Without doing - စာရေးသားမှုပုံစံ)။ 'သူက မိဘကို အမှီမပြုဘဲနဲ့ အချိန်ပိုင်းအလုပ်လုပ်ပြီး ကျောင်းလခပေးနေတယ်။'" },
+          { q: "15. 今回のテストで満点を取れる______、夢にも思わなかった。", options: ["A. なんて", "B. くらい", "C. ほど", "D. なんか"], ans: 0, expl: "<b>~なんて</b> (N3): '... လိုမျိုးအရာကို' (အံ့ဩခြင်း သို့မဟုတ် အထင်သေးခြင်း)။ 'ဒီတစ်ခေါက် စာမေးပွဲမှာ အမှတ်ပြည့်ရလိမ့်မယ်လို့ အိပ်မက်ထဲတောင် မထင်ခဲ့ဘူး။'" },
+          { q: "16. 彼女はプロの歌手______歌が上手だ。", options: ["A. といっても", "B. だけあって", "C. にかけては", "D. としたら"], ans: 1, expl: "<b>~だけあって</b> (N3/N2): '... ဖြစ်တဲ့အတွက်ကြောင့် တကယ့်ကိုပဲ' (မျှော်လင့်ထားတဲ့အတိုင်း ချီးကျူးတာ)။ 'သူမက ပရော်ဖက်ရှင်နယ် အဆိုတော်ဖြစ်တဲ့အတွက် တကယ့်ကို အသံကောင်းတာပဲ။'" },
+          { q: "17. このロボットは、人間に______複雑な作業ができる。", options: ["A. 代わって", "B. とって", "C. 対して", "D. ついて"], ans: 0, expl: "<b>~に代わって (にかわって)</b> (N3): '... အစား / ... ကိုယ်စား'။ 'ဒီရိုဘော့က လူသားတွေရဲ့ကိုယ်စား ခက်ခဲတဲ့ အလုပ်တွေကို လုပ်ဆောင်နိုင်တယ်။'" },
+          { q: "18. 先輩のやり方______、私もやってみることにした。", options: ["A. をこめて", "B. にしたがって", "C. を中心に", "D. を通して"], ans: 1, expl: "<b>~にしたがって</b> (N3): '... အတိုင်း / ... ကို လိုက်နာပြီး'။ 'စီနီယာရဲ့ လုပ်နည်းအတိုင်း ကျွန်တော်လည်း လုပ်ကြည့်ဖို့ ဆုံးဖြတ်ခဲ့တယ်။'" },
+          { q: "19. 彼はスポーツ______、どんな種目でも得意だ。", options: ["A. に限らず", "B. に関して", "C. をはじめ", "D. ならでは"], ans: 1, expl: "<b>~に関して (にかんして)</b> (N3): '... နဲ့ပတ်သက်ပြီး'။ 'သူက အားကစားနဲ့ ပတ်သက်ရင် ဘယ်အမျိုးအစားမဆို တော်တယ်။'" },
+          { q: "20. 子供が生まれてからは、自分の時間などない______だ。", options: ["A. にすぎない", "B. わけ", "C. に等しい", "D. 同然"], ans: 3, expl: "<b>~同然 (どうぜん)</b> (N2): '... နဲ့ ထပ်တူထပ်မျှပဲ / ... တိုင်းပါပဲ'။ 'ကလေးမွေးပြီးကတည်းက ကိုယ်ပိုင်အချိန်ဆိုတာ မရှိသလောက်ပါပဲ။'" },
+          { q: "21. どんなに働いた______、給料は全然上がらない。", options: ["A. ところで", "B. としても", "C. からには", "D. 反面"], ans: 0, expl: "<b>~ところで</b> (N2): 'ဘယ်လောက်ပဲ ... လုပ်ပတ်စေဦးတော့' (အချည်းနှီးဖြစ်ခြင်း)။ 'ဘယ်လောက်ပဲ အလုပ်လုပ်ပတ်စေဦးတော့ လစာက လုံးဝမတက်ဘူး။'" },
+          { q: "22. 明日はテストだから、今夜は勉強する______。", options: ["A. ほかない", "B. わけがない", "C. にすぎない", "D. はずがない"], ans: 0, expl: "<b>~ほかない</b> (N3): '... မှတစ်ပါး အခြားမရှိ / ... လုပ်ဖို့ပဲရှိတယ်'။ 'မနက်ဖြန် စာမေးပွဲမို့လို့ ဒီညတော့ စာကျက်ရုံပဲ ရှိတော့တာပေါ့။'" },
+          { q: "23. この仕事は、経験の有無______だれでも応募できます。", options: ["A. を問わず", "B. に応じて", "C. にかかわらず", "D. をめぐって"], ans: 0, expl: "<b>~を問わず (をとわず)</b> (N2): '... ကို မေးမြန်းစစ်ဆေးခြင်းမရှိဘဲ / မရွေး'။ 'ဒီအလုပ်က အတွေ့အကြုံ ရှိရှိမရှိရှိ ဘယ်သူမဆို လျှောက်ထားနိုင်ပါတယ်။'" },
+          { q: "24. 会議で出された意見を______、新しいプロジェクトが始まった。", options: ["A. もとにして", "B. 中心にして", "C. きっかけにして", "D. 通して"], ans: 0, expl: "<b>~をベースにして / もとにして</b> (N3): '... ကို အခြေခံပြီး'။ 'အစည်းအဝေးမှာ ထွက်လာတဲ့ အမြင်တွေကို အခြေခံပြီး ပရောဂျက်အသစ် စတင်ခဲ့တယ်။'" },
+          { q: "25. 毎日練習した______、ついに試合で勝つことができた。", options: ["A. 結果", "B. あげく", "C. 末に", "D. ついでに"], ans: 0, expl: "<b>~結果 (けっか)</b> (N3): '... လုပ်ဆောင်ခဲ့တဲ့ ရလဒ်ကြောင့်'။ 'နေ့တိုင်း လေ့ကျင့်ခဲ့တဲ့ ရလဒ်ကြောင့် နောက်ဆုံးမှာ ပွဲကို နိုင်ခဲ့ပြီ။'" },
+          { q: "26. 会議の______、携帯電話の電源はお切りください。", options: ["A. 最中に", "B. うちに", "C. 間に", "D. あいだ"], ans: 0, expl: "<b>~最中に (さいちゅうに)</b> (N3): '... လုပ်နေဆဲ အလယ်ဗဟိုမှာ' (အနှောင့်အယှက်မဖြစ်စေရန် တားမြစ်ချက်များနှင့် တွဲသုံးလေ့ရှိ)။" },
+          { q: "27. この携帯は、子供______デザインされている。", options: ["A. 向けに", "B. 向きに", "C. 通りに", "D. 沿って"], ans: 0, expl: "<b>~向けに</b> (N3): '... အတွက် သီးသန့်ရည်ရွယ်ထုတ်လုပ်ထားသော'။ 'ဒီဖုန်းက ကလေးတွေအတွက် ရည်ရွယ်ပြီး ဒီဇိုင်းထုတ်ထားတာပါ။'" },
+          { q: "28. 彼女は日本語が上手な______、日本文化への理解も深い。", options: ["A. のみならず", "B. に反して", "C. にかけては", "D. からいって"], ans: 0, expl: "<b>~のみならず</b> (N2): '... တင်မကဘဲ' (Not only)။ 'သူမက ဂျပန်စာ တော်ရုံတင်မကဘဲ ဂျပန်ယဉ်ကျေးမှုကိုလည်း နားလည်မှု နက်ရှိုင်းတယ်။'" },
+          { q: "29. 実際に自分でやってみない______、その難しさはわからない。", options: ["A. ことには", "B. 以上は", "C. あまり", "D. 以上"], ans: 0, expl: "<b>~ないことには</b> (N3/N2): '... မလုပ်မချင်းတော့ နောက်ကဟာ မဖြစ်နိုင်ဘူး'။ 'တကယ်တမ်း ကိုယ်တိုင် မလုပ်ကြည့်မချင်းတော့ အဲဒီအခက်အခဲကို သိမှာမဟုတ်ဘူး။'" },
+          { q: "30. 彼が犯人だなんて、絶対に信じる______。", options: ["A. わけがない", "B. わけにはいかない", "C. どころではない", "D. にすぎない"], ans: 0, expl: "<b>~わけがない</b> (N3): '... ဖြစ်နိုင်ခြေ လုံးဝမရှိဘူး'။ 'သူက တရားခံဆိုတာမျိုး၊ ဘယ်လိုမှ ယုံကြည်နိုင်စရာ အကြောင်းမရှိဘူး။'" },
+          { q: "31. 台風の接近に______、学校は休校になった。", options: ["A. 伴って", "B. 対して", "C. 比べて", "D. 沿って"], ans: 0, expl: "<b>~に伴って (にともなって)</b>: တိုင်ဖွန်းမုန်တိုင်း နီးကပ်လာခြင်းနှင့်အတူ ကျောင်းများကို ပိတ်လိုက်ရသည်။" },
+          { q: "32. 私はただ自分の義務を果たした______。褒められる必要はない。", options: ["A. にすぎない", "B. に相違ない", "C. にすぎれば", "D. どころではない"], ans: 0, expl: "<b>~にすぎない</b> (N2): '... မျှရုံသက်သက်သာ ဖြစ်သည်'။ 'ကျွန်တော်ကတော့ ကိုယ့်တာဝန်ကိုယ် ထမ်းဆောင်ခဲ့ရုံ သက်သက်ပါပဲ။ ချီးကျူးခံရဖို့ မလိုပါဘူး။'" },
+          { q: "33. 医者にタバコを吸うなと言われつつも、______。 ", options: ["A. 吸うのをやめられない", "B. すぐにやめた", "C. 吸うはずがない", "D. 吸うべきだ"], ans: 0, expl: "<b>~つつも</b> (N2): '... နေမိသော်လည်းပဲ (နောင်တ သို့မဟုတ် မတတ်နိုင်တဲ့ ဆန့်ကျင်မှု)'။ 'ဆရာဝန်က ဆေးလိပ်မသောက်နဲ့ ပြောနေသော်လည်းပဲ မဖြတ်နိုင်သေးဘူး။'" },
+          { q: "34. 計画が成功するかどうかは、みんなの努力______にかかっている。", options: ["A. 次第", "B. 次第で", "C. からこそ", "D. のみ"], ans: 0, expl: "<b>名詞 + 次第 (しだい)</b>: '... ပေါ်မှာပဲ မူတည်တယ်။' (Noun တိုက်ရိုက်တွဲပုံစံ)" },
+          { q: "35. 一生懸命勉強した______、不合格になってしまって悔しい。", options: ["A. にもかかわらず", "B. からには", "C. おかげで", "D. ついでに"], ans: 0, expl: "<b>~にもかかわらず</b> (N2): '... ဖြစ်ပါလျက်နဲ့ / သော်လည်းပဲ'။ 'အသေအလဲ စာကျက်ခဲ့ပါလျက်နဲ့ ကျရှုံးခဲ့ရလို့ အရမ်းခံရခက်တယ်။'" },
+          { q: "36. 年を取る______、体が思うように動かなくなる。", options: ["A. につれて", "B. に際して", "C. に対して", "D. にとって"], ans: 0, expl: "<b>~につれて</b> (N3): '... ဖြစ်လာတာနဲ့အမျှ တစ်ပြိုင်နက်'။ 'အသက်ကြီးလာတာနဲ့အမျှ ခန္ဓာကိုယ်က စိတ်တိုင်းကျ မလှုပ်ရှားနိုင်တော့ဘူး။'" },
+          { q: "37. 有名な観光地______、物価がとても高い。", options: ["A. だけあって", "B. といっても", "C. に反して", "D. をめぐって"], ans: 0, expl: "<b>~だけあって</b>: 'နာမည်ကြီး လည်ပတ်စရာနေရာ ဖြစ်တဲ့အတိုင်းပဲ ကုန်ဈေးနှုန်းတွေက အရမ်းကြီးတယ်။'" },
+          { q: "38. 親の期待______、彼は勉強に集中した。", options: ["A. にこたえて", "B. に反して", "C. につれて", "D. に向かって"], ans: 0, expl: "<b>~にこたえて</b> (N2): '... (မျှော်လင့်ချက်/တောင်းဆိုချက်) ကို တုံ့ပြန်သောအားဖြင့်'။ 'မိဘတွေရဲ့ မျှော်လင့်ချက်ကို တုံ့ပြန်တဲ့အနေနဲ့ သူစာကိုပဲ အာရုံစိုက်ခဲ့တယ်။'" },
+          { q: "39. 締め切りが明日だから、今夜は寝る______にいきまない。", options: ["A. わけ", "B. はず", "C. こと", "D. もの"], ans: 0, expl: "<b>~わけにはいかない</b>: 'မအိပ်ဘဲနေလို့ မဖြစ်ဘူး' ဆိုတဲ့ အဓိပ္ပာယ်အတွက် 'わけ' ဖြည့်စွက်ရပါမယ်။" },
+          { q: "40. あなた______、この困難を乗り越えることはできなかっただろう。", options: ["A. なしには", "B. でなくて", "C. を除いて", "D. からして"], ans: 0, expl: "<b>~なしには / なしでは</b> (N2): '... သာမရှိရင်တော့ (မဖြစ်နိုင်ဘူး)'။ 'မင်းသာမရှိရင် ဒီအခက်အခဲကို ကျော်ဖြတ်နိုင်မှာ မဟုတ်ဘူး။'" },
+          { q: "41. 来日したばかりのころは、日本語がわからない______苦労した。", options: ["A. あまり", "B. かわりに", "C. ついでに", "D. ものの"], ans: 0, expl: "<b>~あまり</b> (N3/N2): '... လွန်ကဲတဲ့အရှိန်ကြောင့်'။ 'ဂျပန်ရောက်ခါစက ဂျပန်စာကို မသိလွန်းအားကြီးလို့ တော်တော်ဒုက္ခရောက်ခဲ့ရတယ်။'" },
+          { q: "42. 法律______、すべての人は平等である。", options: ["A. のもとに", "B. に際して", "C. に沿って", "D. にかけて"], ans: 0, expl: "<b>~のもとに (の下に)</b> (N2): '... ရဲ့ အောက်မှာ / ... ရဲ့ လွှမ်းမိုးမှုအောက်မှာ'။ 'ဥပဒေရဲ့ အောက်မှာ လူသားအားလုံးဟာ တန်းတူညီတူပဲ ဖြစ်ပါတယ်။'" },
+          { q: "43. 一度やると決めた______、最後までやり抜くべきだ。", options: ["A. 以上は", "B. つつも", "C. とたん", "D. あげく"], ans: 0, expl: "<b>~以上は (いじょうは)</b> (N3/N2): '... လုပ်မယ်လို့ ဆုံးဖြတ်ပြီးတဲ့အထက်ကတော့' (からには နဲ့ ဆင်တူ)။" },
+          { q: "44. 彼女の歌声は、聞く人すべての心を揺さぶらずには______。", options: ["A. おかない", "B. いられない", "C. しまわない", "D. いられないだろう"], ans: 0, expl: "<b>~ずにはおかない</b> (N2): '... မလုပ်ဘဲ မနေဘူး / သေချာပေါက် ဖြစ်စေရမယ်' (ခံစားချက် ပြင်းထန်မှု)။ 'သူမရဲ့ သီချင်းသံက နားထောင်သူအားလုံးရဲ့ စိတ်ကို သေချာပေါက် လှုပ်ခတ်စေတယ်။'" },
+          { q: "45. 首相の失言を______、激しい論争が巻き起こった。", options: ["A. めぐって", "B. にたいして", "C. にそって", "D. を通して"], ans: 0, expl: "<b>~をめぐって</b> (N2): '... ကို ဗဟိုပြုပြီး (ငြင်းခုံခြင်း/ပြိုင်ဆိုင်ခြင်း)'။ 'ဝန်ကြီးချုပ်ရဲ့ စကားအမှားကို ဗဟိုပြုပြီး ပြင်းထန်တဲ့ အငြင်းပွားမှုတွေ ဖြစ်ပွားခဲ့တယ်။'" },
+          { q: "46. 時代の変化______、人々の価値観も変わっていく。", options: ["A. とともに", "B. に反して", "C. にたいして", "D. を通じて"], ans: 0, expl: "<b>~とともに</b> (N3): '... နဲ့အတူတစ်ပြိုင်နက်'။ 'ခေတ်ကာလ ပြောင်းလဲလာတာနဲ့အမျှ လူတွေရဲ့ တန်ဖိုးထားမှုတွေလည်း ပြောင်းလဲလာတယ်။'" },
+          { q: "47. この映画は、大人から子供______楽しめます。", options: ["A. にわたって", "B. にかけて", "C. に至るまで", "D. に通して"], ans: 2, expl: "<b>~に至るまで (にいたるまで)</b> (N2): '... အထိတိုင်အောင် (အစွန်အဖျားအထိ အကုန်လုံး)'။ 'ဒီရုပ်ရှင်က လူကြီးကနေ ကလေးတွေအထိတိုင်အောင် ပျော်ပျော်ရွှင်ရွှင် ကြည့်နိုင်ပါတယ်။'" },
+
+          // READING PASSAGES WITH INTEGRATED QUESTIONS (48, 49, 50)
+          { 
+            isReading: true,
+            passage: "【読解文章 1 (Reading Passage 1)】\n日本の会社では、時間を守ることが非常に重視される。遅刻は個人の信用を失うだけでなく、会社全体の信頼にも影響するからである。例えば、会議が10時に始まる場合、10時に席に着くのではなく、5分前には準備を終えて待っているのがマナーとされる。もし電車の遅延などで遅れる場合は、必ず事前に連絡を入れなければならない。",
+            q: "48. 本文の内容と合っているものはどれか。", 
+            options: ["A. 会議が10時に始まるなら、10時に会社に到着すればよい。", "B. 遅刻をしても、電車の遅延なら会社への連絡は必要ない。", "C. 5分前には準備を終えて会議の席で待っているのが、日本のビジネスマナーである。", "D. 日本の会社では、個人の信用よりも会社全体の利益が常に優先される。"], 
+            ans: 2, 
+            expl: "Passage ထဲမှာ '5分前には準備を終えて待っているのがマナーとされる' (၅ မိနစ်အလိုမှာ ပြင်ဆင်ပြီး စောင့်နေတာက မာနာဖြစ်တယ်) လို့ တိုက်ရိုက်ဖော်ပြထားလို့ Option C က မှန်ပါတယ်။" 
+          },
+          { 
+            isReading: true,
+            passage: "【読解文章 2 (Reading Passage 2)】\n近年、AI（人工知能）の進化によって、人間の仕事が奪われるのではないかという不安が広がっている。しかし、AIはデータ処理や単純な作業を効率化するのには優れているが、人間の感情を理解したり、新しい芸術を生み出したりすることには限界がある。これからの時代は、AIを排除するのではなく、AIと人間がいかに協力していくかが重要になるだろう。",
+            q: "49. 筆者はこれからのAI時代についてどのように考えているか。", 
+            options: ["A. 人間の仕事はすべてAIに奪われるため、新しい仕事を探すべきだ。", "B. AIは感情を持たないため、危険な技術として社会から排除すべきである。", "C. AIと人間が敵対するのではなく、協力し合っていくことが大切である。", "D. AIによるデータ処理は不正確なので、人間がすべて確認しなければならない。"], 
+            ans: 2, 
+            expl: "စာပိုဒ်ရဲ့ နောက်ဆုံးစာကြောင်း 'AIと人間がいかに協力していくかが重要になる' (AI နဲ့ လူသား ဘယ်လို ပူးပေါင်းဆောင်ရွက်မလဲဆိုတာ အရေးကြီးတယ်) ဆိုတဲ့အချက်က Option C နဲ့ ကိုက်ညီပါတယ်။" 
+          },
+          { 
+            isReading: true,
+            passage: "【読解文章 3 (Reading Passage 3)】\n言葉の意味は、時代とともに変化していく。例えば、かつて「やばい」という言葉は、泥棒などが捕まりそうで「危険だ」という意味で使われていた。しかし現代の若者の間では、「とても美味しい」や「素晴らしい」といった肯定的な意味でも広く使われるようになっている。このように、言葉は生き物であり、社会の変化に合わせて姿を変えていくのである。",
+            q: "50. 筆者がこの文章で最も言いたいことは何か。", 
+            options: ["A. 若者が使う「やばい」という言葉は、正しい日本語ではないため使うべきではない。", "B. 言葉は社会や時代の変化に合わせて、その意味や使われ方を変えていくものである。", "C. 「やばい」という言葉の本来の意味は「美味しい」という意味だった。", "D. 昔の日本語のほうが、現代の日本語よりも論理的で優れている。"], 
+            ans: 1, 
+            expl: "စာပိုဒ်နောက်ဆုံးမှာ '言葉は生き物であり、社会の変化に合わせて姿を変えていく' (ဘာသာစကားဆိုတာ သက်ရှိဖြစ်ပြီး လူမှုအသိုင်းအဝိုင်း အပြောင်းအလဲအလိုက် ပုံစံပြောင်းလဲသွားတယ်) လို့ ကောက်ချက်ချထားလို့ Option B က အမှန်ကန်ဆုံး ဖြေဆိုချက်ဖြစ်ပါတယ်။" 
+          }
+        ]
+      },
+      // You can expand Day 2 to Day 23 using the exact same configuration!
+      2: {
+        title: "Day 2 - Coming Soon",
+        mcqs: []
+      }
+    };
+
+    let currentDay = 1;
+    let currentQ = 0;
+    let selectedAnswersState = {};
+
+    function renderDaysNav() {
+      const nav = document.getElementById('daysNav');
+      nav.innerHTML = '';
+      for (let i = 1; i <= 23; i++) {
+        if (!daysData[i]) continue; 
+        
+        const btn = document.createElement('div');
+        btn.className = `day-btn ${i === currentDay ? 'active' : ''}`;
+        btn.textContent = `Day ${i}`;
+        btn.onclick = () => loadDay(i);
+        nav.appendChild(btn);
+      }
+    }
+
+    function loadDay(day) {
+      if(!daysData[day]) return;
+      currentDay = day;
+      currentQ = 0;
+      document.getElementById('dayTitle').textContent = daysData[day].title;
+      renderDaysNav();
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const container = document.getElementById('quizContainer');
+      const dayInfo = daysData[currentDay];
+      
+      if (!dayInfo || !dayInfo.mcqs || dayInfo.mcqs.length === 0) {
+        container.innerHTML = `<p style="color: #6b7280; text-align:center; padding: 40px 0;">⚠️ ဤရက်အတွက် မေးခွန်းများ မထည့်သွင်းရသေးပါ။</p>`;
+        document.getElementById('progressText').textContent = "-";
+        return;
+      }
+
+      const q = dayInfo.mcqs[currentQ];
+      document.getElementById('progressText').textContent = `Question ${currentQ + 1} of ${dayInfo.mcqs.length}`;
+
+      let html = '';
+      
+      // If the question contains a reading passage, display it beautifully
+      if (q.isReading && q.passage) {
+        html += `<div class="reading-passage">${q.passage.replace(/\n/g, '<br>')}</div>`;
+      }
+
+      html += `<div class="question"><strong>${q.q}</strong></div>`;
+      html += `<div class="options" id="optionsGroup">`;
+      
+      q.options.forEach((opt, i) => {
+        html += `<button onclick="selectAnswer(${i})" id="opt-${i}">${opt}</button>`;
+      });
+      html += `</div>`;
+      
+      html += `
+        <div class="nav-container">
+          <button id="prevBtn" onclick="prevQuestion()">← Previous</button>
+          <button id="nextBtn" onclick="nextQuestion()">Next →</button>
+        </div>
+      `;
+      
+      container.innerHTML = html;
+      document.getElementById('prevBtn').disabled = currentQ === 0;
+      
+      // Restore previous choice if user is navigating back/forth
+      const savedState = selectedAnswersState[`${currentDay}-${currentQ}`];
+      if (savedState !== undefined) {
+        revealAnswerUI(savedState, q.ans, q.expl);
+      }
+    }
+
+    function selectAnswer(selectedIndex) {
+      const q = daysData[currentDay].mcqs[currentQ];
+      selectedAnswersState[`${currentDay}-${currentQ}`] = selectedIndex;
+      revealAnswerUI(selectedIndex, q.ans, q.expl);
+    }
+
+    function revealAnswerUI(selected, correct, explanation) {
+      const buttons = document.querySelectorAll('#optionsGroup button');
+      
+      buttons.forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === correct) btn.classList.add('correct-choice');
+        if (i === selected && i !== correct) btn.classList.add('wrong-choice');
+      });
+
+      let fb = document.getElementById('feedbackBox');
+      if (!fb) {
+        fb = document.createElement('div');
+        fb.id = 'feedbackBox';
+        document.getElementById('quizContainer').insertBefore(fb, document.querySelector('.nav-container'));
+      }
+
+      if (selected === correct) {
+        fb.className = "feedback correct";
+        fb.innerHTML = `🎉 <b>မှန်ကန်ပါတယ်!</b>`;
+      } else {
+        fb.className = "feedback wrong";
+        fb.innerHTML = `❌ <b>မှားယွင်းနေပါသည်။</b><br><span style="font-size:0.95rem; margin-top:5px; display:block;">${explanation}</span>`;
+      }
+    }
+
+    function nextQuestion() {
+      const totalQ = daysData[currentDay].mcqs.length;
+      if (currentQ < totalQ - 1) {
+        currentQ++;
+        showQuestion();
+      } else {
+        alert(`🎉 Day ${currentDay} ရဲ့ မေးခွန်း ၅၀ စလုံး အောင်မြင်စွာ ပြီးဆုံးသွားပါပြီ။`);
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQ > 0) {
+        currentQ--;
+        showQuestion();
+      }
+    }
+
+    window.onload = () => {
+      loadDay(1);
+    };
+  </script>
+</body>
+</html>
