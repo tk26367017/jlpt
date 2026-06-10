@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JLPT N3-N2 Bridge: 23-Day Challenge & Kanji</title>
+  <title>JLPT N3-N2 Bridge: 3-Day Challenge & Kanji</title>
   <style>
     :root {
       --primary: #e11d48;
@@ -19,31 +19,83 @@
       --accent-hover: #1d4ed8;
     }
 
-    body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 20px; background: var(--bg); color: var(--text); line-height: 1.6; }
+    body { 
+      font-family: 'Helvetica Neue', Arial, sans-serif; 
+      margin: 0; 
+      padding: 20px; 
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.6; 
+    }
+    
     h1 { text-align: center; color: var(--primary); margin-bottom: 5px; }
     .subtitle { text-align: center; color: #6b7280; font-weight: bold; margin-bottom: 20px; }
     
     /* Global Mode Switcher */
     .mode-switch { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
-    .mode-btn { padding: 12px 24px; font-size: 1.1rem; font-weight: bold; border: none; border-radius: 30px; cursor: pointer; transition: all 0.2s; background: #e5e7eb; color: var(--text); }
-    .mode-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3); }
+    .mode-btn { 
+      padding: 12px 24px; 
+      font-size: 1.1rem; 
+      font-weight: bold; 
+      border: none; 
+      border-radius: 30px; 
+      cursor: pointer; 
+      transition: all 0.2s; 
+      background: #e5e7eb; 
+      color: var(--text); 
+    }
+    .mode-btn.active { 
+      background: var(--primary); 
+      color: white; 
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3); 
+    }
 
     .days { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px auto; justify-content: center; max-width: 1000px; }
-    .day-btn { padding: 10px 14px; background: var(--card-bg); border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+    .day-btn { 
+      padding: 10px 14px; 
+      background: var(--card-bg); 
+      border: 2px solid #e5e7eb; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      font-weight: bold; 
+      transition: all 0.2s; 
+    }
     .day-btn:hover { border-color: var(--primary); }
     .day-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
     
-    .card { background: var(--card-bg); padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); max-width: 800px; margin: 20px auto; }
+    .card { 
+      background: var(--card-bg); 
+      padding: 30px; 
+      border-radius: 16px; 
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+      max-width: 800px; 
+      margin: 20px auto; 
+    }
     .progress-text { font-size: 0.9rem; color: #6b7280; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; }
     
-    .reading-passage { background: #f3f4f6; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 6px solid #9ca3af; font-size: 1.1rem; white-space: pre-line; }
+    .reading-passage { 
+      background: #f3f4f6; 
+      padding: 20px; 
+      border-radius: 12px; 
+      margin-bottom: 20px; 
+      border-left: 6px solid #9ca3af; 
+      font-size: 1.1rem; 
+      white-space: pre-line; 
+    }
     .question { font-size: 1.3rem; margin: 20px 0; font-weight: 500; }
     .options { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
     
     .options button { 
-      text-align: left; width: 100%; padding: 16px; font-size: 1.05rem; 
-      background: var(--card-bg); border: 2px solid #e5e7eb; border-radius: 12px; 
-      cursor: pointer; transition: all 0.2s; font-weight: 500;
+      text-align: left; 
+      width: 100%; 
+      padding: 16px; 
+      font-size: 1.05rem; 
+      background: var(--card-bg); 
+      border: 2px solid #e5e7eb; 
+      border-radius: 12px; 
+      cursor: pointer; 
+      transition: all 0.2s; 
+      font-weight: 500;
     }
     .options button:hover:not(:disabled) { border-color: var(--primary); background: #fff5f5; }
     .options button:disabled { cursor: not-allowed; }
@@ -56,7 +108,18 @@
     .feedback.wrong { background: var(--wrong-bg); color: #991b1b; border-left: 5px solid var(--wrong); }
     
     .nav-container { margin-top: 25px; display: flex; gap: 15px; }
-    .nav-container button { flex: 1; padding: 14px; font-size: 1.1rem; border: none; border-radius: 10px; cursor: pointer; background: var(--primary); color: white; font-weight: bold; transition: background 0.2s; }
+    .nav-container button { 
+      flex: 1; 
+      padding: 14px; 
+      font-size: 1.1rem; 
+      border: none; 
+      border-radius: 10px; 
+      cursor: pointer; 
+      background: var(--primary); 
+      color: white; 
+      font-weight: bold; 
+      transition: background 0.2s; 
+    }
     .nav-container button:hover { background: var(--primary-hover); }
     .nav-container button:disabled { background: #d1d5db; cursor: not-allowed; color: #9ca3af; }
 
@@ -74,81 +137,75 @@
     .example-title { font-weight: bold; color: #166534; margin-bottom: 4px; }
     .example-item { margin-bottom: 6px; }
     .example-item:last-child { margin-bottom: 0; }
+    
+    .score-badge {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary);
+      background: #ffe4e6;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 15px 0;
+    }
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
 
-  <h1>📖 JLPT N3 / N2 Challenge</h1>
-  <div class="subtitle">Grammar, Reading & Essential Kanji Hub</div>
+  <h1>JLPT N3-N2 Bridge Challenge</h1>
+  <div class="subtitle">Daily Interactive Practice & Reference Module</div>
 
   <div class="mode-switch">
-    <button class="mode-btn active" id="btnQuizMode" onclick="switchMode('quiz')">📝 Day Challenge (Quiz)</button>
-    <button class="mode-btn" id="btnKanjiMode" onclick="switchMode('kanji')">⛩️ N3 Kanji Study (1-20)</button>
+    <button id="mode-quiz-btn" class="mode-btn active" onclick="switchAppMode('quiz')">Interactive Quiz Mode</button>
+    <button id="mode-kanji-btn" class="mode-btn" onclick="switchAppMode('kanji')">Kanji Reference View</button>
   </div>
 
-  <div class="days" id="daysNav"></div>
-
-  <div class="days" id="kanjiNav" style="display: none;">
-    <button class="day-btn active" id="kSet1" onclick="loadKanjiSet(1)">Kanji 1 - 10</button>
-    <button class="day-btn" id="kSet2" onclick="loadKanjiSet(2)">Kanji 11 - 20</button>
+  <div class="days" id="days-nav-bar">
+    <button class="day-btn active" id="day-tab-1" onclick="selectDay(1)">Day 1</button>
+    <button class="day-btn" id="day-tab-2" onclick="selectDay(2)">Day 2</button>
+    <button class="day-btn" id="day-tab-3" onclick="selectDay(3)">Day 3</button>
   </div>
 
-  <div class="card">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <h2 id="mainContainerTitle" style="margin: 0;">Day 1</h2>
-      <div class="progress-text" id="progressText">Question 1 of 50</div>
+  <div class="card" id="main-content-card">
     </div>
-    
-    <div id="dynamicContentContainer"></div>
-  </div>
 
   <script>
-    // --- MODE CONTROLLER ---
-    let activeMode = 'quiz'; // 'quiz' or 'kanji'
+    // =================================================================
+    // 1. DATA AND STATES MANAGEMENT MODULE
+    // =================================================================
+    let currentMode = "quiz"; // Options: 'quiz' or 'kanji'
+    let currentDay = 1;
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let answered = false;
 
-    function switchMode(mode) {
-      activeMode = mode;
-      document.getElementById('btnQuizMode').classList.toggle('active', mode === 'quiz');
-      document.getElementById('btnKanjiMode').classList.toggle('active', mode === 'kanji');
-      
-      if (mode === 'quiz') {
-        document.getElementById('daysNav').style.display = 'flex';
-        document.getElementById('kanjiNav').style.display = 'none';
-        loadDay(currentDay);
-      } else {
-        document.getElementById('daysNav').style.display = 'none';
-        document.getElementById('kanjiNav').style.display = 'flex';
-        loadKanjiSet(currentKanjiSet);
-      }
-    }
-
-    // --- DAY CHALLENGE DATA (QUIZ) ---
+    // Unified Clean App Quiz Database
     const daysData = {
       1: {
         title: "Day 1 - N3/N2 Grammar & Reading",
         mcqs: [
           { q: "1. いくら安くても、買いたくないものは買う______。 ", options: ["A. わけにはいかない", "B. わけがない", "C. はずがない", "D. にすぎない"], ans: 0, expl: "<b>~わけにはいかない</b> (N3/N2): စိတ္တဇသဘော သို့မဟုတ် လူမှုရေးစည်းကမ်းအရ 'လုပ်လို့မဖြစ်ဘူး / မလုပ်နိုင်ဘူး'။ 'ဘယ်လောက်ပဲတန်တန်、မဝယ်ချင်တဲ့အရာကိုတော့ ဝယ်လို့မဖြစ်ဘူး။'" },
           { q: "2. 彼は日本に5年も住んでいる______、日本語がほとんど話せない。", options: ["A. からといって", "B. からには", "C. ながらも", "D. つつある"], ans: 2, expl: "<b>~ながらも</b> (N2): '... ဖြစ်သော်လည်း' (矛盾 - ရှေ့နောက်ဆန့်ကျင်မှု)။ 'သူက ဂျပန်မှာ ၅ နှစ်တောင် နေခဲ့သော်လည်း ဂျပန်စာကို လုံးဝမပြောနိုင်ရှာဘူး။'" },
-          { q: "3. 留学する______、しっかり目的を持って勉強したい。", options: ["A. からには", "B. からといって", "C. あまり", "D. たびに"], ans: 0, expl: "<b>~からには</b> (N3/N2): '... ဖြစ်တဲ့အထက်ကတော့/ဖြစ်ပြီးမှတော့' (ပြင်းထန်တဲ့ ဆုံးဖြတ်ချက်)။ 'နိုင်ငံခြားပညာတော်သင် သွားမယ့်အထက်ကတော့ ရည်မှန်းချက်သေချာထားပြီး စာလုပ်ချင်တယ်။'" },
-          { q: "4. 日本の人口は、これからますます減少していき______。 ", options: ["A. かねない", "B. つつある", "C. にすぎない", "D. かけている"], ans: 1, expl: "<b>~つつある</b> (N2): '... ဖြစ်ပွားနေဆဲ ဖြစ်သည်' (지속적인 변화)။ 'ဂျပန်နိုင်ငံရဲ့ လူဦးရေဟာ အခုကစပြီး ပိုမိုလျော့နည်းလာနေဆဲ ဖြစ်ပါတယ်။'" },
+          { q: "3. 留学する______、しっかり目的を持って勉強したい。", options: ["A. からには", "B. からといって", "C. あまり", "D. たびに"], ans: 0, expl: "<b>~からには</b> (N3/N2): '... ဖြစ်တဲ့အထက်ကတော့/ဖြစ်ပြီးမှတော့' (ပြင်းထန်တဲ့ ဆုံးဖြတ်ချက်)။ 'နိုင်ငံခြားပညာတော်သင် သွားမယ့်အထက်ကတော့ ရည်မှန်းချက်သေចာထားပြီး စာလုပ်ချင်တယ်။'" },
+          { q: "4. 日本の人口は、これからますます減少していき______。 ", options: ["A. かねない", "B. つつある", "C. にすぎない", "D. かけている"], ans: 1, expl: "<b>~つつある</b> (N2): '... ဖြစ်ပွားနေဆဲ ဖြစ်သည်'။ 'ဂျပန်နိုင်ငံရဲ့ လူဦးရေဟာ အခုကစပြီး ပိုမိုလျော့နည်းလာနေဆဲ ဖြစ်ပါတယ်။'" },
           { q: "5. N2の試験は難しいが、毎日の努力______合格できるはずだ。", options: ["A. 次第で", "B. を通して", "C. に応じて", "D. によって"], ans: 0, expl: "<b>~次第で (しだいで)</b> (N2): '... အပေါ်မှာ မူတည်ပြီး'။ 'နေ့စဉ် ကြိုးစားအားထုတ်မှုအပေါ် မူတည်ပြီး အောင်မြင်နိုင်မှာပါ။'" },
           { q: "6. 大雨の______、電車のダイヤが大幅に乱れています。", options: ["A. せいで", "B. おかげで", "C. ために", "D. 影響によって"], ans: 2, expl: "<b>~ために</b> (N3): ဤနေရာတွင် Objective ဖြစ်ရပ် (ရထားနောက်ကျခြင်း) အတွက် 'အကြောင်းရင်း' ကို တရားဝင်စာသားဖြင့် ပြရာတွင် သုံးသည်။" },
           { q: "7. 料理が下手な______、毎日自分で弁当を作っています。", options: ["A. ながらも", "B. くせに", "C. のに", "D. からといって"], ans: 0, expl: "<b>~ながらも</b>: 'ချက်ပြုတ်တာ ညံ့ဖျင်းသော်လည်းပဲ နေ့တိုင်း ကိုယ်တိုင် ထမင်းဘူး လုပ်စားပါတယ်။'" },
           { q: "8. 怒った______、そんなひどいことを言うべきではない。", options: ["A. からといって", "B. からには", "C. あまりに", "D. ついでに"], ans: 0, expl: "<b>~からいたって</b> (N3/N2): '... ဆိုရုံနဲ့တင် / ... ဖြစ်ရုံနဲ့တော့' (နောက်က အငြင်းလိုက်လေ့ရှိ)။ 'စိတ်ဆိုးရုံနဲ့တင် အဲဒီလို ရိုင်းစိုင်းတဲ့စကားမျိုး မပြောသင့်ဘူး။'" },
-          { q: "9. 先生に相談した______、留学を決めた。", options: ["A. うえで", "B. ついでに", "C. とたんに", "D. 次第で"], ans: 0, expl: "<b>~うえで</b> (N3/N2): '... ပြီးတဲ့နောက်မှ' (探ကအချက်ကို အရင်လုပ်ပြီးမှ ဆုံးဖြတ်တာ)။ 'ဆရာနဲ့ တိုင်ပင်ပြီးတဲ့နောက်မှ ကျောင်းသွားတက်ဖို့ ဆုံးဖြတ်ခဲ့တယ်။'" },
+          { q: "9. 先生に相談した______、留学を決めた。", options: ["A. うえで", "B. ついでに", "C. とたんに", "D. 次第で"], ans: 0, expl: "<b>~うえで</b> (N3/N2): '... ပြီးတဲ့နောက်မှ' (ရှေ့ကအချက်ကို အရင်လုပ်ပြီးမှ ဆုံးဖြတ်တာ)။ 'ဆရာနဲ့ တိုင်ပင်ပြီးတဲ့နောက်မှ ကျောင်းသွားတက်ဖို့ ဆုံးဖြတ်ခဲ့တယ်။'" },
           { q: "10. インターネットの普及______、世界中の情報がすぐ手に入るようになった。", options: ["A. に伴って", "B. に対して", "C. に比べて", "D. に応じて"], ans: 0, expl: "<b>~に伴って (にともなって)</b> (N2): '... နဲ့အမျှ / ... နဲ့အတူတူ ပြောင်းလဲလာတာ'။ 'အင်တာနက် ခေတ်စားလာတာနဲ့အမျှ ကမ္ဘာ့သတင်းတွေကို ချက်ချင်းရလာတယ်။'" },
-          { q: "11. 体調が悪い______、無理をして仕事に行くのはよくない。", options: ["A. からといって", "B. からには", "C. のだから", "D. つつも"], ans: 2, expl: "<b>~のだから</b> (N3): '... ဖြစ်တဲ့အတွက်ကြောင့်မို့' (သိသာတဲ့ အကြောင်းပြချက်)။ 'နေမကောင်းဖြစ်နေတာမို့လို့ ဇွတ်မှိတ်ပြီး အလုပ်သွားတာ မကောင်းဘူး。'" },
+          { q: "11. 体調が悪い______、無理をして仕事に行くのはよくない。", options: ["A. からといって", "B. からには", "C. のだから", "D. つつも"], ans: 2, expl: "<b>~のだから</b> (N3): '... ဖြစ်တဲ့အတွက်ကြောင့်မို့' (သိသာတဲ့ အကြောင်းပြချက်)။ 'နေမကောင်းဖြစ်နေတာမို့လို့ ဇွတ်မှိတ်ပြီး အလုပ်သွားတာ မကောင်းဘူး။'" },
           { q: "12. このカバンはデザインが美しい______、とても軽くて使いやすい。", options: ["A. ばかりか", "B. に限らず", "C. を問わず", "D. 反面"], ans: 0, expl: "<b>~ばかりか</b> (N3/N2): '... တင်မကဘဲ'။ 'ဒီအိတ်က ဒီဇိုင်းလှရုံတင်မကဘဲ ပေါ့ပါးပြီး သုံးရတာလည်း လွယ်ကူတယ်။'" },
           { q: "13. 自分のミスなのだから、自分で責任を取る______だ。", options: ["A. わけ", "B. べき", "C. はず", "D. こと"], ans: 1, expl: "<b>~べきだ</b> (N3): 'လုပ်သင့်တယ် / လုပ်ဖို့ တာဝန်ရှိတယ်'။ 'ကိုယ့်အမှားဖြစ်လို့ ကိုယ်တိုင် တာဝန်ယူသင့်ပါတယ်။'" },
           { q: "14. 彼は親に頼る______、アルバイトをして学費を払っている。", options: ["A. ことなく", "B. ないで", "C. ずに", "D. なしに"], ans: 0, expl: "<b>~こと無く</b> (N2): '... မလုပ်ဘဲနဲ့' (Without doing - စာရေးသားမှုပုံစံ)။ 'သူက မိဘကို အမှီမပြုဘဲနဲ့ အချိန်ပိုင်းအလုပ်လုပ်ပြီး ကျောင်းလခပေးနေတယ်။'" },
-          { q: "15. 今回のテストで満点を取れる______、夢にも思わなかった。", options: ["A. なんて", "B. くらい", "C. ほど", "D. なんか"], ans: 0, expl: "<b>~なんて</b> (N3): '... လိုမျိုးအရာကို' (အံ့ဩခြင်း သို့မဟုတ် အထင်သေးခြင်း)။ 'ဒီတစ်ခေါက် စာမေးပွဲမှာ အမှတ်ပြည့်ရလိမ့်မယ်လို့ အိပ်မက်ထဲတောင် မထင်ခဲ့ဘူး။'" },
+          { q: "15. 今回のテストで満点を取れる______、夢にも思わなかった。", options: ["A. なんて", "B. くらい", "C. ほど", "D. なんか"], ans: 0, expl: "<b>~なんて</b> (N3): '... လိုမျိုးအရာကို' (အံ့ဩခြင်း သို့မဟုတ် အထင်သေးခြင်း)။ 'ဒီတစ်ခေါက် Сာမေးပွဲမှာ အမှတ်ပြည့်ရလိမ့်မယ်လို့ အိပ်မက်ထဲတောင် မထင်ခဲ့ဘူး။'" },
           { q: "16. 彼女はプロの歌手______歌が上手だ。", options: ["A. といっても", "B. だけあって", "C. にかけては", "D. としたら"], ans: 1, expl: "<b>~だけあって</b> (N3/N2): '... ဖြစ်တဲ့အတွက်ကြောင့် တကယ့်ကိုပဲ' (မျှော်လင့်ထားတဲ့အတိုင်း ချီးကျူးတာ)။ 'သူမက ပရော်ဖက်ရှင်နယ် အဆိုတော်ဖြစ်တဲ့အတွက် တကယ့်ကို အသံကောင်းတာပဲ။'" },
-          { q: "17. このロボットは、人間に______複雑な作業ができる。", options: ["A. 代わって", "B. とって", "C. 对して", "D. ついて"], ans: 0, expl: "<b>~に代わって (にかわって)</b> (N3): '... အစား / ... ကိုယ်စား'။ 'ဒီရိုဘော့က လူသားတွေရဲ့ကိုယ်စား ခက်ခဲတဲ့ အလုပ်တွေကို လုပ်ဆောင်နိုင်တယ်။'" },
+          { q: "17. このロボットは、人間に______複雑な作業ができる。", options: ["A. 代わって", "B. とって", "C. に対して", "D. ついて"], ans: 0, expl: "<b>~に代わって (にかわって)</b> (N3): '... အစား / ... ကိုယ်စား'။ 'ဒီရိုဘော့က လူသားတွေရဲ့ကိုယ်စား ခက်ခဲတဲ့ အလုပ်တွေကို လုပ်ဆောင်နိုင်တယ်။'" },
           { q: "18. 先輩のやり方______、私もやってみることにした。", options: ["A. をこめて", "B. にしたがって", "C. を中心に", "D. を通して"], ans: 1, expl: "<b>~にしたがって</b> (N3): '... အတိုင်း / ... ကို လိုက်နာပြီး'။ 'စီနီယာရဲ့ လုပ်နည်းအတိုင်း ကျွန်တော်လည်း လုပ်ကြည့်ဖို့ ဆုံးဖြတ်ခဲ့တယ်။'" },
           { q: "19. 彼はスポーツ______、どんな種目でも得意だ。", options: ["A. に限らず", "B. に関して", "C. をはじめ", "D. ならでは"], ans: 1, expl: "<b>~に関して (にかんして)</b> (N3): '... နဲ့ပတ်သက်ပြီး'။ 'သူက အားကစားနဲ့ ပတ်သက်ရင် ဘယ်အမျိုးအစားမဆို တော်တယ်။'" },
-          { q: "20. 子供が生まれてからは、自分の時間ない______だ。", options: ["A. にすぎない", "B. わけ", "C. に等しい", "D. 同然"], ans: 3, expl: "<b>~同然 (どうぜん)</b> (N2): '... နဲ့ ထပ်တူထပ်မျှပဲ / ... တိုင်းပါပဲ'။ 'ကလေးမွေးပြီးကတည်းက ကိုယ်ပိုင်အချိန်ဆိုတာ မရှိသလောက်ပါပဲ။'" },
+          { q: "20. 子供が生まれてからは、自分の時間などない______だ。", options: ["A. にすぎない", "B. わけ", "C. に等しい", "D. 同然"], ans: 3, expl: "<b>~同然 (どうぜん)</b> (N2): '... နဲ့ ထပ်တူထပ်မျှပဲ / ... တိုင်းပါပဲ'။ 'ကလေးမွေးပြီးကတည်းက ကိုယ်ပိုင်အချိန်ဆိုတာ မရှိသလောက်ပါပဲ။'" },
           { q: "21. どんなに働いた______、給料は全然上がらない。", options: ["A. ところで", "B. としても", "C. からには", "D. 反面"], ans: 0, expl: "<b>~ところで</b> (N2): 'ဘယ်လောက်ပဲ ... လုပ်ပတ်စေဦးတော့' (အချည်းနှီးဖြစ်ခြင်း)။ 'ဘယ်လောက်ပဲ အလုပ်လုပ်ပတ်စေဦးတော့ လစာက လုံးဝမတက်ဘူး။'" },
           { q: "22. 明日はテストだから、今夜は勉強する______。", options: ["A. ほかない", "B. わけがない", "C. にすぎない", "D. はずがない"], ans: 0, expl: "<b>~ほかない</b> (N3): '... မှတစ်ပါး အခြားမရှိ / ... လုပ်ဖို့ပဲရှိတယ်'။ 'မနက်ဖြန် စာမေးပွဲမို့လို့ ဒီညတော့ စာကျက်ရုံပဲ ရှိတော့တာပေါ့။'" },
           { q: "23. この仕事は、経験の有無______だれでも応募できます。", options: ["A. を問わず", "B. に応じて", "C. にかかわらず", "D. をめぐって"], ans: 0, expl: "<b>~を問わず (をとわず)</b> (N2): '... ကို မေးမြန်းစစ်ဆေးခြင်းမရှိဘဲ / မရွေး'။ 'ဒီအလုပ်က အတွေ့အကြုံ ရှိရှိမရှိရှိ ဘယ်သူမဆို လျှောက်ထားနိုင်ပါတယ်။'" },
@@ -156,15 +213,15 @@
           { q: "25. 毎日練習した______、ついに試合で勝つことができた。", options: ["A. 結果", "B. あげく", "C. 末に", "D. ついでに"], ans: 0, expl: "<b>~結果 (けっか)</b> (N3): '... လုပ်ဆောင်ခဲ့တဲ့ ရလဒ်ကြောင့်'။ 'နေ့တိုင်း လေ့ကျင့်ခဲ့တဲ့ ရလဒ်ကြောင့် နောက်ဆုံးမှာ ပွဲကို နိုင်ခဲ့ပြီ။'" },
           { q: "26. 会議の______、携帯電話の電源はお切りください。", options: ["A. 最中に", "B. うちに", "C. 間に", "D. あいだ"], ans: 0, expl: "<b>~最中に (さいちゅうに)</b> (N3): '... လုပ်နေဆဲ အလယ်ဗဟိုမှာ' (အနှောင့်အယှက်မဖြစ်စေရန် တားမြစ်ချက်များနှင့် တွဲသုံးလေ့ရှိ)။" },
           { q: "27. この携帯は、子供______デザインされている。", options: ["A. 向けに", "B. 向きに", "C. 通りに", "D. 沿って"], ans: 0, expl: "<b>~向けに</b> (N3): '... အတွက် သီးသန့်ရည်ရွယ်ထုတ်လုပ်ထားသော'။ 'ဒီဖုန်းက ကလေးတွေအတွက် ရည်ရွယ်ပြီး ဒီဇိုင်းထုတ်ထားတာပါ။'" },
-          { q: "28. 彼女は日本語が上手な______、日本文化への理解も深い。", options: ["A. のみならず", "B. に反して", "C. にかけては", "D. からいって"], ans: 0, expl: "<b>~のみならず</b> (I2): '... တင်မကဘဲ' (Not only)။ 'သူမက ဂျပန်စာ တော်ရုံတင်မကဘဲ ဂျပန်ယဉ်ကျေးမှုကိုလည်း နားလည်မှု နက်ရှိုင်းတယ်။'" },
-          { q: "29. 実際に自分でやってみない______、その難しさはわからない。", options: ["A. ことには", "B. 以上は", "C. あまり", "D. 以上"], ans: 0, expl: "<b>~ないことには</b> (N3/N2): '... မလုပ်မချင်းတော့ နောက်ကဟာ မဖြစ်နိုင်ဘူး'။ 'တကယ်တမ်း ကိုယ်တိုင် မလုပ်ကြည့်မချင်းတော့ အဲဒီအခက်ဲကို သိမှာမဟုတ်ဘူး။'" },
+          { q: "28. 彼女は日本語が上手な______、日本文化への理解も深い。", options: ["A. のみならず", "B. に反して", "C. にかけては", "D. からいって"], ans: 0, expl: "<b>~のみならず</b> (N2): '... တင်မကဘဲ' (Not only)။ 'သူမက ဂျပန်စာ တော်ရုံတင်မကဘဲ ဂျပန်ယဉ်ကျေးမှုကိုလည်း နားလည်မှု နက်ရှိုင်းတယ်။'" },
+          { q: "29. 実際に自分でやってみない______、その難しさはわからない。", options: ["A. ことには", "B. 以上は", "C. あまり", "D. 以上"], ans: 0, expl: "<b>~ないことには</b> (N3/N2): '... မလုပ်မချင်းတော့ နောက်ကဟာ မဖြစ်နိုင်ဘူး'။ 'တကယ်တမ်း ကိုယ်တိုင် မလုပ်ကြည့်မချင်းတော့ အဲဒီအခက်အခဲကို သိမှာမဟုတ်ဘူး။'" },
           { q: "30. 彼が犯人だなんて、絶対に信じる______。", options: ["A. わけがない", "B. わけにはいかない", "C. どころではない", "D. にすぎない"], ans: 0, expl: "<b>~わけがない</b> (N3): '... ဖြစ်နိုင်ခြေ လုံးဝမရှိဘူး'။ 'သူက တရားခံဆိုတာမျိုး၊ ဘယ်လိုမှ ယုံကြည်နိုင်စရာ အကြောင်းမရှိဘူး။'" },
-          { q: "31. 台風の接近に______、学校は休校になった。", options: ["A. 伴って", "B. 对して", "C. 比べて", "D. 沿って"], ans: 0, expl: "<b>~伴って (にともなって)</b>: တိုင်ဖွန်းမုန်တိုင်း နီးကပ်လာခြင်းနှင့်အတူ ကျောင်းများကို ပိတ်လိုက်ရသည်။" },
+          { q: "31. 台風の接近に______、学校は休校になった。", options: ["A. 伴って", "B. に対して", "C. 比べて", "D. 沿って"], ans: 0, expl: "<b>~伴って (にともなって)</b>: တိုင်ဖွန်းမုန်တိုင်း နီးကပ်လာခြင်းနှင့်အတူ ကျောင်းများကို ပိတ်လိုက်ရသည်။" },
           { q: "32. 私はただ自分の義務を果たした______。褒められる必要はない。", options: ["A. にすぎない", "B. に相違ない", "C. にすぎれば", "D. どころではない"], ans: 0, expl: "<b>~にすぎない</b> (N2): '... မျှရုံသက်သက်သာ ဖြစ်သည်'။ 'ကျွန်တော်ကတော့ ကိုယ့်တာဝန်ကိုယ် ထမ်းဆောင်ခဲ့ရုံ သက်သက်ပါပဲ။ ချီးကျူးခံရဖို့ မလိုပါဘူး။'" },
           { q: "33. 医者にタバコを吸うなと言われつつも、______。 ", options: ["A. 吸うのをやめられない", "B. すぐにやめた", "C. 吸うはずがない", "D. 吸うべきだ"], ans: 0, expl: "<b>~つつも</b> (N2): '... နေမိသော်လည်းပဲ (နောင်တ သို့မဟုတ် မတတ်နိုင်တဲ့ ဆန့်ကျင်မှု)'။ 'ဆရာဝန်က ဆေးလိပ်မသောက်နဲ့ ပြောနေသော်လည်းပဲ မဖြတ်နိုင်သေးဘူး။'" },
           { q: "34. 計画が成功するかどうかは、みんなの努力______にかかっている。", options: ["A. 次第", "B. 次第で", "C. からこそ", "D. のみ"], ans: 0, expl: "<b>名詞 + 次第 (しだい)</b>: '... ပေါ်မှာပဲ မူတည်တယ်။' (Noun တိုက်ရိုက်တွဲပုံစံ)" },
           { q: "35. 一生懸命勉強した______、不合格になってしまって悔しい。", options: ["A. にもかかわらず", "B. からには", "C. おかげで", "D. ついでに"], ans: 0, expl: "<b>~にもかかわらず</b> (N2): '... ဖြစ်ပါလျက်နဲ့ / သော်လည်းပဲ'။ 'အသေအလဲ စာကျက်ခဲ့ပါလျက်နဲ့ ကျရှုံးခဲ့ရလို့ အရမ်းခံရခက်တယ်။'" },
-          { q: "36. 年を取る______、体が思うように動かなくなる。", options: ["A. につれて", "B. に際して", "C. に対して", "D. にとって"], ans: 0, expl: "<b>~につれて</b> (N3): '... ဖြစ်လာတာနဲ့အမျှ တစ်ပြိုင်နက်'။ 'အသက်ကြီးလာတာနဲ့အမျှ ခန္ဓာကိုယ်က စိတ်တိုင်းကျ မလှုပ်ရှားနိုင်တော့ဘူး။'" },
+          { q: "36. 年を取る______、体が思うように動かなくなる。", options: ["A. につれて", "B. に際して", "C. に対して", "D. にとって"], ans: 0, expl: "<b>~につれて</b> (N3): '... ဖြစ်လာတာနဲ့အမျှ တစ်ပြိုင်နက်'။ 'အသက်ကြီးလာတာနဲ့အမျှ ခန္ဓာကိုယ်က စိတ်တိုင်းကျ မလှုပ်ရှားနိုင်တော့ဘူး。'" },
           { q: "37. 有名な観光地______、物価がとても高い。", options: ["A. だけあって", "B. といっても", "C. に反して", "D. をめぐって"], ans: 0, expl: "<b>~だけあって</b>: 'နာမည်ကြီး လည်ပတ်စရာနေရာ ဖြစ်တဲ့အတိုင်းပဲ ကုန်ဈေးနှုန်းတွေက အရမ်းကြီးတယ်။'" },
           { q: "38. 親の期待______、彼は勉強に集中した。", options: ["A. にこたえて", "B. に反して", "C. につれて", "D. に向かって"], ans: 0, expl: "<b>~にこたえて</b> (N2): '... (မျှော်လင့်ချက်/တောင်းဆိုချက်) ကို တုံ့ပြန်သောအားဖြင့်'။ 'မိဘတွေရဲ့ မျှော်လင့်ချက်ကို တုံ့ပြန်တဲ့အနေနဲ့ သူစာကိုပဲ အာရုံစိုက်ခဲ့တယ်။'" },
           { q: "39. 締め切りが明日だから、今夜は寝る______にいきまない。", options: ["A. わけ", "B. はず", "C. こと", "D. もの"], ans: 0, expl: "<b>~わけにはいかない</b>: 'မအိပ်ဘဲနေလို့ မဖြစ်ဘူး' ဆိုတဲ့ အဓိပ္ပာယ်အတွက် 'わけ' ဖြည့်စွက်ရပါမယ်။" },
@@ -173,8 +230,8 @@
           { q: "42. 法律______、すべての人は平等である。", options: ["A. のもとに", "B. に際して", "C. に沿って", "D. にかけて"], ans: 0, expl: "<b>~のもとに (の下に)</b> (N2): '... ရဲ့ အောက်မှာ / ... ရဲ့ လွှမ်းမိုးမှုအောက်မှာ'။ 'ဥပဒေရဲ့ အောက်မှာ လူသားအားလုံးဟာ တန်းတူညီတူပဲ ဖြစ်ပါတယ်။'" },
           { q: "43. 一度やると決めた______、最後までやり抜くべきだ。", options: ["A. 以上は", "B. つつも", "C. とたん", "D. あげく"], ans: 0, expl: "<b>~以上は (いじょうは)</b> (N3/N2): '... လုပ်မယ်လို့ ဆုံးဖြတ်ပြီးတဲ့အထက်ကတော့' (からには နဲ့ ဆင်တူ)။" },
           { q: "44. 彼女の歌声は、聞く人すべての心を揺さぶらずには______。", options: ["A. おかない", "B. いられない", "C. しまわない", "D. いられないだろう"], ans: 0, expl: "<b>~ずにはおかない</b> (N2): '... မလုပ်ဘဲ မနေဘူး / သေချာပေါက် ဖြစ်စေရမယ်' (ခံစားချက် ပြင်းထန်မှု)။ 'သူမရဲ့ သီချင်းသံက နားထောင်သူအားလုံးရဲ့ စိတ်ကို သေချာပေါက် လှုပ်ခတ်စေတယ်။'" },
-          { q: "45. 首相の失言を______、激しい論争が巻き起こった。", options: ["A. めぐって", "B. にたいして", "C. にそって", "D. を通して"], ans: 0, expl: "<b>~をめぐって</b> (N2): '... ကို ဗဟိုပြုပြီး (ငြင်းခုံခြင်း/ပြိုင်ဆိုင်ခြင်း)'။ 'ဝန်ကြီးချုပ်ရဲ့ စကားအမှားကို ဗဟိုပြုပြီး ပြင်းထန်တဲ့ အငြင်းပွားမှုတွေ ဖြစ်ပွားခဲ့တယ်။'" },
-          { q: "46. 時代の変化______、人々の価値観も変わっていく。", options: ["A. とともに", "B. に反して", "C. にたいして", "D. を通じて"], ans: 0, expl: "<b>~とともに</b> (N3): '... နဲ့အတူတစ်ပြိုင်နက်'။ 'ခေတ်ကာလ ပြောင်းလဲလာတာနဲ့အမျှ လူတွေရဲ့ တန်ဖိုးထားမှုတွေလည်း ပြောင်းလဲလာတယ်။'" },
+          { q: "45. 首相の失言を______、激しい論争が巻き起こった。", options: ["A. めぐって", "B. に対して", "C. にそって", "D. を通して"], ans: 0, expl: "<b>~をめぐって</b> (N2): '... ကို ဗဟိုပြုပြီး (ငြင်းခုံခြင်း/ပြိုင်ဆိုင်ခြင်း)'။ 'ဝန်ကြီးချုပ်ရဲ့ စကားအမှားကို ဗဟိုပြုပြီး ပြင်းထန်တဲ့ အငြင်းပွားမှုတွေ ဖြစ်ပွားခဲ့တယ်။'" },
+          { q: "46. 時代の変化______、人々の価値観も変わっていく。", options: ["A. とともに", "B. に反して", "C. に対して", "D. を通じて"], ans: 0, expl: "<b>~とともに</b> (N3): '... နဲ့အတူတစ်ပြိုင်နက်'။ 'ခေတ်ကာလ ပြောင်းလဲလာတာနဲ့အမျှ လူတွေရဲ့ တန်ဖိုးထားမှုတွေလည်း ပြောင်းလဲလာတယ်။'" },
           { q: "47. この映画は、大人から子供______楽しめます。", options: ["A. にわたって", "B. にかけて", "C. に至るまで", "D. に通して"], ans: 2, expl: "<b>~に至るまで (にいたるまで)</b> (N2): '... အထိတိုင်အောင် (အစွန်အဖျားအထိ အကုန်လုံး)'။ 'ဒီရုပ်ရှင်က လူကြီးကနေ ကလေးတွေအထိတိုင်အောင် ပျော်ပျော်ရွှင်ရွှင် ကြည့်နိုင်ပါတယ်။'" },
           { 
             isReading: true,
@@ -186,11 +243,11 @@
           },
           { 
             isReading: true,
-            passage: "【読解文章 2 (Reading Passage 2)】\n近年、AI（人工知能）の進化によって、人間の仕事が奪われるのではないかという不安が広がっている。しかし、AIはデータ処理や単純な作業を効率化するのには優れているが、人間の感情を理解したり、新しい芸術を生み出したりすることには限界がある。これからの時代は、AIを排除するのではなく、AIと人間がいかに協力していくかが重要になるだろう。",
+            passage: "【読解文章 2 (Reading Passage 2)】\n近年、AI（人工知能）の進化によって、人間の仕事が奪われるのではないかという不安が広がっている。しかし、AIはデータ処理や単純な作業を効率化するのには優れているが、人間の感情を理解したり、新しい芸術を生み出したりすることには限界がある。これからの時代は、AIを排除するのではない、AIと人間がいかに協力していくかが重要になるだろう。",
             q: "49. 筆者はこれからのAI時代についてどのように考えているか。", 
             options: ["A. 人間の仕事はすべてAIに奪われるため、新しい仕事を探すべきだ。", "B. AIは感情を持たないため、危険な技術として社会から排除すべきである。", "C. AIと人間が敵対するのではない、協力し合っていくことが大切である。", "D. AIによるデータ処理は不正確なので、人間がすべて確認しなければならない。"], 
             ans: 2, 
-            expl: "Composed စာပိုဒ်ရဲ့ နောက်ဆုံးစာကြောင်း 'AIと人間がいかに協力していくかが重要になる' (AI နဲ့ လူသား ဘယ်လို ပူးပေါင်းဆောင်ရွက်မလဲဆိုတာ အရေးကြီးတယ်) ဆိုတဲ့အချက်က Option C နဲ့ ကိုက်ညီပါတယ်။" 
+            expl: "စာပိုဒ်ရဲ့ နောက်ဆုံးစာကြောင်း 'AIと人間がいかに協力していくかが重要になる' (AI နဲ့ လူသား ဘယ်လို ပူးပေါင်းဆောင်ရွက်မလဲဆိုတာ အရေးကြီးတယ်) ဆိုတဲ့အချက်က Option C နဲ့ ကိုက်ညီပါတယ်။" 
           },
           { 
             isReading: true,
@@ -204,227 +261,250 @@
       },
       2: {
         title: "Day 2 - Kanji Test 1 (Kanji 1 - 10)",
+        kanjiList: [
+          { char: "政", meaning: "Politics / Government", onyomi: "セイ, ショウ", kunyomi: "まつりごと", ex: "政治 (せいじ - Politics), 政府 (せいふ - Government)" },
+          { char: "治", meaning: "Govern / Cure", onyomi: "ジ, チ", kunyomi: "おさ・める, なお・る", ex: "治る (なおる - To be cured), 政治 (せいじ - Politics)" },
+          { char: "経", meaning: "Pass through / Manage", onyomi: "ケイ, キョウ", kunyomi: "へ・る", ex: "経済 (けいざい - Economy), 経験 (けいけん - Experience)" },
+          { char: "済", meaning: "Settle / Relieve", onyomi: "サイ, ザイ", kunyomi: "す・む, す・ます", ex: "経済 (けいざい - Economy), 返済 (へんさい - Repayment)" },
+          { char: "険", meaning: "Precipitous / Inaccessible", onyomi: "ケン", kunyomi: "けわ・しい", ex: "険しい (けわしい - Steep), 危険 (きけん - Danger)" },
+          { char: "備", meaning: "Equip / Provide", onyomi: "ビ", kunyomi: "そな・える, そな・わる", ex: "備える (そなえる - To prepare), 準備 (じゅんび - Preparation)" },
+          { char: "対", meaning: "Opposite / Against", onyomi: "タイ, ツイ", kunyomi: "", ex: "反対 (はんたい - Opposition), 対象 (たいしょう - Target)" },
+          { char: "確", meaning: "Certain / Solid", onyomi: "カク", kunyomi: "たし・か", ex: "確認 (かくにん - Confirmation), 確か (たしか - Certain)" },
+          { char: "定", meaning: "Determine / Fix", onyomi: "テイ, ジョウ", kunyomi: "さだ・まる", ex: "予定 (よてい - Plan), 決定 (けってい - Decision)" },
+          { char: "義", meaning: "Righteousness / Meaning", onyomi: "ギ", kunyomi: "", ex: "義務 (ぎむ - Duty), 意義 (いぎ - Significance)" }
+        ],
         mcqs: [
-          { q: "1. 現代の【せいじ】について若者たちが議論している。", options: ["A. 政事", "B. 政治", "C. 政府", "D. 治政"], ans: 1, expl: "<b>政治 (せいじ)</b>: Politics / နိုင်ငံရေး။ '政' (セイ) နှင့် '治' (ジ) ပေါင်းစပ်ထားသော စကားလုံးဖြစ်သည်။" },
-          { q: "2. 国の【けいざい】状況が徐々に良くなってきた。", options: ["A. 経剤", "B. 軽済", "C. 経済", "D. 経細"], ans: 2, expl: "<b>経済 (けいざい)</b>: Economy / စီးပွားရေး။ '経' (စီမံခန့်ခွဲသည်) နှင့် '済' (ပြေလည်သည်/ကယ်တင်သည်) ကို သုံးထားသည်။" },
-          { q: "3. 銀行からの借金をすべて【へんさい】した。", options: ["A. 返済", "B. 返済", "C. 変済", "D. 辺済"], ans: 0, expl: "<b>返済 (へんさい)</b>: Repayment / ပြန်လည်ပေးဆပ်ခြင်း။ Onyomi အသံထွက်မှာ 'サイ' ဖြစ်သည်။" },
-          { q: "4. 山の道は非常に【けわしい】ので、気をつけてください。", options: ["A. 険しい", "B. 検しい", "C. 険しい", "D. 権しい"], ans: 0, expl: "<b>険しい (けわしい)</b>: Steep/Rugged / မတ်စောက်သော။ 訓読み (Kunyomi) ပုံစံဖြစ်သည်။" },
+          { q: "1. 現代の【せいじ】について若者たちが議論している。", options: ["A. 政事", "B. 政治", "C. 政府", "D. 治政"], ans: 1, expl: "<b>政治 (せいじ)</b>: Politics / နိုင်ငံရေး။" },
+          { q: "2. 国の【けいざい】状況が徐々に良くなってきた。", options: ["A. 経剤", "B. 軽済", "C. 経済", "D. 経細"], ans: 2, expl: "<b>経済 (けいざい)</b>: Economy / စီးပွားရေး။" },
+          { q: "3. 銀行からの借金をすべて【へんさい】した。", options: ["A. 返才", "B. 辺済", "C. 変済", "D. 返済"], ans: 3, expl: "<b>返済 (へんさい)</b>: Repayment / ပြန်လည်ပေးဆပ်ခြင်း။" },
+          { q: "4. 山の道は非常に【けわしい】ので、気をつけてください。", options: ["A. 険しい", "B. 検しい", "C. 験しい", "D. 権しい"], ans: 0, expl: "<b>険しい (けわしい)</b>: Steep/Rugged / မတ်စောက်သော။" },
           { q: "5. 地震に【そなえて】、非常用の食料を買っておく。", options: ["A. 備えて", "B. 具えて", "C. 準えて", "D. 設えて"], ans: 0, expl: "<b>備える (そなえる)</b>: To prepare/equip / ပြင်ဆင်သည်၊ တပ်ဆင်သည်။" },
-          { q: "6. 彼の意見に対して、私は【はんたい】の立場をとった。", options: ["A. 反対", "B. 坂対", "C. 伴対", "D. 返対"], ans: 0, expl: "<b>反対 (はんたい)</b>: Opposition / ဆန့်ကျင်ဘက်။ '対' ၏ Onyomi 1 မှာ 'タイ' ဖြစ်သည်။" },
-          { q: "7. パスポートの有効期限を【かくにん】する。", options: ["A. 確信", "B. 確認", "C. 認確", "D. 確言"], ans: 1, expl: "<b>確認 (かくにん)</b>: Confirmation / အတည်ပြုစစ်ဆေးခြင်း။ '確' (သေချာသော) + '認' (အသိအမှတ်ပြုသည်)။" },
-          { q: "8. 来週の旅行の【よてい】を友達と話し合う。", options: ["A. 予訂", "B. 予定", "C. 予定", "D. 予貞"], ans: 2, expl: "<b>予定 (よてい)</b>: Plan/Schedule / အစီအစဉ်၊ သတ်မှတ်ချက်။ '定' ၏ Onyomi မှာ 'テイ' ဖြစ်သည်။" },
-          { q: "9. この活動を行うことには大きな【いぎ】がある。", options: ["A. 意議", "B. 意義", "C. 意義", "D. 異義"], ans: 1, expl: "<b>意義 (いぎ)</b>: Meaning/Significance / အဓိပ္ပာယ် သို့မဟုတ် တန်ဖိုး။ '義' (တရားမျှတခြင်း/အဓိပ္ပာယ်) ကို သုံးသည်။" },
-          { q: "10. 国民として税金を払う【ぎむ】がある。", options: ["A. 義無", "B. 義役", "C. 義務", "D. 義務"], ans: 2, expl: "<b>義務 (ぎむ)</b>: Duty/Obligation / တာဝန်ဝတ္တရား။ '務' (Task/Duty) ၏ Onyomi မှာ 'ム' ဖြစ်သည်။" }
+          { q: "6. 彼の意見に対して、私は【はんたい】の立場をとった。", options: ["A. 反対", "B. 坂対", "C. 伴対", "D. 返対"], ans: 0, expl: "<b>反対 (はんたい)</b>: Opposition / ဆန့်ကျင်ဘက်။" },
+          { q: "7. パスポートの有効期限を【かくにん】する。", options: ["A. 確信", "B. 確認", "C. 認確", "D. 確言"], ans: 1, expl: "<b>確認 (かくにん)</b>: Confirmation / အတည်ပြုစစ်ဆေးခြင်း။" },
+          { q: "8. 来週の旅行の【よてい】を友達と話し合う。", options: ["A. 予訂", "B. 与定", "C. 予定", "D. 予貞"], ans: 2, expl: "<b>予定 (よてい)</b>: Plan/Schedule / အစီအစဉ်၊ သတ်မှတ်ချက်။" },
+          { q: "9. この活動を行うことには大きな【いぎ】がある。", options: ["A. 意議", "B. 意義", "C. 意気", "D. 異義"], ans: 1, expl: "<b>意義 (いぎ)</b>: Meaning/Significance / အဓိပ္ပာယ် သို့မဟုတ် တန်ဖိုး။" },
+          { q: "10. 国民として税金を払う【ぎむ】がある。", options: ["A. 義無", "B. 義役", "C. 義務", "D. 岐務"], ans: 2, expl: "<b>義務 (ぎむ)</b>: Duty/Obligation / တာဝန်ဝတ္တရား။" }
         ]
       },
       3: {
         title: "Day 3 - Kanji Test 2 (Kanji 11 - 20)",
+        kanjiList: [
+          { char: "連", meaning: "Take along / Connect", onyomi: "レン", kunyomi: "つ・れる, つら・なる", ex: "連絡 (れんらく - Contact), 連れていく (つれていく - Take someone)" },
+          { char: "絡", meaning: "Entangle / Entwine", onyomi: "ラク", kunyomi: "から・まる", ex: "連絡 (れんらく - Contact), 絡まる (からまる - Entangle)" },
+          { char: "関", meaning: "Barrier / Connection", onyomi: "カン", kunyomi: "せき", ex: "関係 (かんけい - Relation), 関心 (かんしん - Interest)" },
+          { char: "係", meaning: "Person in charge / Connection", onyomi: "ケイ", kunyomi: "かかり", ex: "関係 (かんけい - Relation), 係員 (かかりいん - Clerk)" },
+          { char: "球", meaning: "Ball / Sphere", onyomi: "キュウ", kunyomi: "たま", ex: "地球 (ちきゅう - Earth), 野球 (やきゅう - Baseball)" },
+          { char: "認", meaning: "Acknowledge / Approve", onyomi: "ニン", kunyomi: "みと・める", ex: "確認 (かくにん - Confirmation), 認める (みとめる - To admit)" },
+          { char: "発", meaning: "Departure / Emit", onyomi: "ハツ, ホツ", kunyomi: "", ex: "発達 (はったつ - Development), 発言 (はつげん - Utterance)" },
+          { char: "達", meaning: "Accomplish / Reach", onyomi: "タツ", kunyomi: "", ex: "発達 (はったつ - Development), 友達 (ともだち - Friend)" },
+          { char: "配", meaning: "Distribute / Allocate", onyomi: "ハイ", kunyomi: "くば・る", ex: "配る (くばる - To distribute), 心配 (しんぱい - Worry)" },
+          { char: "果", meaning: "Fruit / Result", onyomi: "カ", kunyomi: "は・たす", ex: "結果 (けっか - Result), 果物 (くだもの - Fruit)" }
+        ],
         mcqs: [
-          { q: "1. トラブルがあったら、すぐに私に【れんらく】してください。", options: ["A. 連格", "B. 連絡", "C. 連落", "D. 練絡"], ans: 1, expl: "<b>連絡 (れんらく)</b>: Contact / ဆက်သွယ်ခြင်း။ '連' (Connect) နှင့် '絡' (Entangle/Entwine) ပေါင်းစပ်မှုဖြစ်သည်။" },
-          { q: "2. 二つの国には深い【かんけい】がある。", options: ["A. 関系", "B. 官係", "C. 関係", "D. 関経"], ans: 2, expl: "<b>関係 (かんけい)</b>: Relationship / ပတ်သက်ဆက်နွယ်မှု။ '関' (Barrier/Relation) နှင့် '係' (Connection)။" },
-          { q: "3. 私たちは【ちきゅう】という美しい星に住んでいる。", options: ["A. 地球", "B. 地救", "C. 地求", "D. 地級"], ans: 0, expl: "<b>地球 (ちきゅう)</b>: Earth / ကမ္ဘာမြေ။ '球' (Ball/Sphere) ၏ Onyomi မှာ 'キュウ' ဖြစ်သည်။" },
+          { q: "1. トラブルがあったら、すぐに私に【れんらく】してください。", options: ["A. 連格", "B. 連絡", "C. 連落", "D. 練絡"], ans: 1, expl: "<b>連絡 (れんらく)</b>: Contact / ဆက်သွယ်ခြင်း။" },
+          { q: "2. 二つの国には深い【かんけい】がある。", options: ["A. 関系", "B. 官係", "C. 関係", "D. 関経"], ans: 2, expl: "<b>関係 (かんけい)</b>: Relationship / ပတ်သက်ဆက်နွယ်မှု။" },
+          { q: "3. 私たちは【ちきゅう】という美しい星に住んでいる。", options: ["A. 地球", "B. 地救", "C. 地求", "D. 地級"], ans: 0, expl: "<b>地球 (ちきゅう)</b>: Earth / ကမ္ဘာမြေ။" },
           { q: "4. 自分の間違いを【みとめる】ことは大切だ。", options: ["A. 認める", "B. 確める", "C. 診める", "D. 許める"], ans: 0, expl: "<b>認める (みとめる)</b>: To recognize/admit / ဝန်ခံသည်၊ အသိအမှတ်ပြုသည်။" },
-          { q: "5. 近年、科学技術が急速に【はったつ】している。", options: ["A. 発達", "B. 発達", "C. 発立", "D. 発建"], ans: 0, expl: "<b>発達 (はったつ)</b>: Development / ဖွံ့ဖြိုးတိုးတက်လာခြင်း။ '達' ၏ Onyomi မှာ 'タツ' ဖြစ်သည်။" },
-          { q: "6. 困っている人に食べ物を【くばる】ボランティア活動。", options: ["A. 配る", "B. 払る", "C. 届る", "D. 渡る"], ans: 0, expl: "<b>配る (くばる)</b>: To distribute / ဝေငှပေးကမ်းသည်။" },
-          { q: "7. 試験で【まんてん】を取ることができて嬉しい。", options: ["A. 満点", "B. 満天", "C. 万点", "D. 満展"], ans: 0, expl: "<b>満点 (まんてん)</b>: Perfect score / အမှတ်ပြည့်။ '満' (Full) ၏ Onyomi မှာ 'マン' ဖြစ်သည်။" },
-          { q: "8. 長年の努力が【けっか】として現れた。", options: ["A. 結菓", "B. 結果", "C. 結課", "D. 結価"], ans: 1, expl: "<b>結果 (けっか)</b>: Result / ရလဒ်။ '果' (Fruit/Result) ၏ Onyomi မှာ 'カ' ဖြစ်သည်။" },
-          { q: "9. 荷物を【つれて】行くことはできません。人間だけです。", options: ["A. 連れて", "B. 連れて", "C. 伴れて", "D. 具れて"], ans: 0, expl: "<b>連れていく (つれていく)</b>: To take someone along / ခေါ်ဆောင်သွားသည်။ (မှတ်ချက်- သက်ရှိများအတွက်သာ သုံးလေ့ရှိ)" },
-          { q: "10. 糸が複雑に【からまる】。", options: ["A. 絡まる", "B. 落まる", "C. 絡まる", "D. 結まる"], ans: 0, expl: "<b>絡まる (からまる)</b>: To entangle / ရစ်ပတ်ငြိတွယ်သည်။ Kunyomi ပုံစံဖြစ်သည်။" }
+          { q: "5. 近年、科学技術が急速に【はったつ】している。", options: ["A. 撥達", "B. 発達", "C. 発立", "D. 発建"], ans: 1, expl: "<b>発達 (はったつ)</b>: Development / ဖွံ့ဖြိုးတိုးတက်လာခြင်း။" },
+          { q: "6. 困っている人に食べ物を【くばる】ボラインティア活動。", options: ["A. 配る", "B. 払る", "C. 届る", "D. 渡る"], ans: 0, expl: "<b>配る (くばる)</b>: To distribute / ဝေငှပေးကမ်းသည်။" },
+          { q: "7. 試験で【まんてん】を取ることができて嬉しい。", options: ["A. 満点", "B. 満天", "C. 万点", "D. 満展"], ans: 0, expl: "<b>満点 (まんてん)</b>: Perfect score / အမှတ်ပြည့်။" },
+          { q: "8. 長年の努力が【けっか】として現れた。", options: ["A. 結菓", "B. 結果", "C. 結課", "D. 結価"], ans: 1, expl: "<b>結果 (けっか)</b>: Result / ရလဒ်။" },
+          { q: "9. 荷物を【つれて】行くことはできません。人間だけです。", options: ["A. 連れて", "B. 連れて", "C. 伴れて", "D. 具れて"], ans: 0, expl: "<b>連れていく (つれていく)</b>: To take someone along / ခေါ်ဆောင်သွားသည်။" },
+          { q: "10. 糸が複雑に【からまる】。", options: ["A. 絡まる", "B. 落まる", "C. 絡まる", "D. 結まる"], ans: 0, expl: "<b>絡まる (からまる)</b>: To entangle / ရစ်ပတ်ငြိတွယ်သည်။" }
         ]
       }
     };
 
-    // --- NEW KANJI STUDY DATA (Top 20 Essential N3 Kanji) ---
-    const kanjiData = {
-      1: [
-        { kanji: "政", meaning: "နိုင်ငံရေး / အစိုးရ", onyomi: "セイ", kunyomi: "まつりごと", ex1: "<b>政</b>治 (<b>せい</b>じ) - Politics (Onyomi)", ex2: "<b>政</b>事 (<b>まつりごと</b>) - Governance (Kunyomi)" },
-        { kanji: "経", meaning: "စီမံခန့်ခွဲသည် / ဖြတ်သန်းသည်", onyomi: "ケイ / キョウ", kunyomi: "へ.る", ex1: "<b>経</b>済 (<b>けい</b>ざい) - Economy (Onyomi 1)", ex2: "経<b>る</b> (<b>へ</b>る) - To pass/elapse (Kunyomi)" },
-        { kanji: "済", meaning: "ပြီးစီးသည် / ပြေလည်သည် / ကယ်တင်သည်", onyomi: "サイ", kunyomi: "す.む", ex1: "返<b>済</b> (へん<b>さい</b>) - Repayment (Onyomi)", ex2: "<b>済</b>む (<b>す</b>む) - To finish/end (Kunyomi)" },
-        { kanji: "険", meaning: "မတ်စောက်သော / အန္တရာယ်ရှိသော", onyomi: "ケン", kunyomi: "けわ.しい", ex1: "危<b>険</b> (き<b>けん</b>) - Danger (Onyomi)", ex2: "<b>険</b>しい (<b>けわ</b>しい) - Steep/Rugged (Kunyomi)" },
-        { kanji: "備", meaning: "ပြင်ဆင်သည် / တပ်ဆင်သည်", onyomi: "ビ", kunyomi: "そな.える", ex1: "准<b>備</b> (じゅん<b>び</b>) - Preparation (Onyomi)", ex2: "<b>備</b>える (<b>そな</b>える) - To prepare/equip (Kunyomi)" },
-        { kanji: "対", meaning: "ဆန့်ကျင်ဘက် / ယှဉ်ပြိုင်ခြင်း / ညီမျှခြင်း", onyomi: "タイ / ツイ", kunyomi: "あいて", ex1: "反<b>対</b> (はん<b>たい</b>) - Opposition (Onyomi 1)", ex2: "一<b>対</b> (いっ<b>つい</b>) - A pair (Onyomi 2)" },
-        { kanji: "確", meaning: "သေချာသော / ခိုင်မာသော", onyomi: "カク", kunyomi: "たし.か", ex1: "<b>確</b>認 (<b>かく</b>にん) - Confirmation (Onyomi)", ex2: "<b>確</b>か (<b>たし</b>か) - Definite/Sure (Kunyomi)" },
-        { kanji: "定", meaning: "သတ်မှတ်သည် / ဆုံးဖြတ်သည်", onyomi: "テイ / ジョウ", kunyomi: "さだ.める", ex1: "予<b>定</b> (よ<b>テイ</b>) - Plan/Schedule (Onyomi 1)", ex2: "<b>定</b>か (<b>さだ</b>か) - Clear/Distinct (Kunyomi)" },
-        { kanji: "義", meaning: "တရားမျှတခြင်း / အဓိပ္ပာယ်", onyomi: "ギ", kunyomi: "（なし）", ex1: "意<b>義</b> (い<b>ぎ</b>) - Meaning/Significance (Onyomi)", ex2: "オ<b>義</b>さん (お<b>ぎ</b>さん) - Father-in-law (Irregular)" },
-        { kanji: "務", meaning: "တာဝန် / အလုပ်ဝတ္တရား", onyomi: "ム", kunyomi: "つト.める", ex1: "義<b>務</b> (ぎ<b>む</b>) - Duty/Obligation (Onyomi)", ex2: "<b>務</b>める (<b>つと</b>める) - To serve/work as (Kunyomi)" }
-      ],
-      2: [
-        { kanji: "連", meaning: "ဆက်သွယ်သည် / ခေါ်ဆောင်သွားသည်", onyomi: "レン", kunyomi: "つら.なる / つ.れる", ex1: "連絡 (<b>れん</b>らく) - Contact (Onyomi)", ex2: "<b>連</b>れていく (<b>つ</b>れていく) - To take someone along (Kunyomi)" },
-        { kanji: "絡", meaning: "ပတ်သတ်ဆက်နွယ်သည် / ငြိတွယ်သည်", onyomi: "ラク", kunyomi: "から.まる", ex1: "連<b>絡</b> (れん<b>らく</b>) - Connection (Onyomi)", ex2: "<b>絡</b>む (<b>から</b>む) - To entangle/pick a quarrel (Kunyomi)" },
-        { kanji: "関", meaning: "အတားအဆီး / ပတ်သက်မှု", onyomi: "カン", kunyomi: "せき", ex1: "<b>関</b>係 (<b>かん</b>けい) - Relation (Onyomi)", ex2: "大<b>関</b> (おお<b>ぜき</b>) - Sumo champion rank (Kunyomi modified)" },
-        { kanji: "係", meaning: "တာဝန်ခံ / ဆက်စပ်မှု", onyomi: "ケイ", kunyomi: "かか.る", ex1: "関<b>係</b> (かん<b>けい</b>) - Relationship (Onyomi)", ex2: "<b>係</b>員 (<b>かかり</b>いん) - Clerk/Staff in charge (Kunyomi)" },
-        { kanji: "球", meaning: "ဘောလုံး / အလုံးစုံ / ကမ္ဘာလုံး", onyomi: "キュウ", kunyomi: "たま", ex1: "地<b>球</b> (ち<b>きゅう</b>) - Earth (Onyomi)", ex2: "野球 (や<b>きゅう</b>) - Baseball (Onyomi Group)" },
-        { kanji: "認", meaning: "အသိအမှတ်ပြုသည် / ခွင့်ပြုသည်", onyomi: "ニン", kunyomi: "みと.める", ex1: "確<b>認</b> (かく<b>にん</b>) - Confirm (Onyomi)", ex2: "<b>認</b>める (<b>みと</b>める) - To recognize/admit (Kunyomi)" },
-        { kanji: "達", meaning: "ဆိုက်ရောက်သည် / အောင်မြင်သည် / အများဆိုင် (နောက်ဆက်တွဲ)", onyomi: "タツ", kunyomi: "たち", ex1: "発<b>達</b> (ハッ<b>タツ</b>) - Development (Onyomi)", ex2: "友達 (とも<b>だち</b>) - Friends (Kunyomi suffix)" },
-        { kanji: "配", meaning: "ဝေငှသည် / စိတ်ပူပန်သည်", onyomi: "ハイ", kunyomi: "くば.る", ex1: "心<b>配</b> (しん<b>ぱい</b>) - Worry (Onyomi modified)", ex2: "<b>配</b>る (<b>くば</b>る) - To distribute/hand out (Kunyomi)" },
-        { kanji: "満", meaning: "ပြည့်နှက်သော / စိတ်ကျေနပ်သော", onyomi: "マン", kunyomi: "み.ちる", ex1: "<b>満</b>点 (<b>まん</b>てん) - Perfect score (Onyomi)", ex2: "<b>満</b>ちる (<b>み</b>ちる) - To be full/filled (Kunyomi)" },
-        { kanji: "果", meaning: "အသီးအပွင့် / ရလဒ် / အကောင်အထည်ဖော်သည်", onyomi: "カ", kunyomi: "は.たす", ex1: "結<b>果</b> (けっ<b>か</b>) - Result (Onyomi)", ex2: "<b>果</b>たす (<b>は</b>たす) - To fulfill/achieve (Kunyomi)" }
-      ]
-    };
-
-    // --- STATE MANAGEMENT ---
-    let currentDay = 1;
-    let currentQ = 0;
-    let currentKanjiSet = 1;
-    let selectedAnswersState = {};
-
-    // --- QUIZ FUNCTIONS ---
-    function renderDaysNav() {
-      const nav = document.getElementById('daysNav');
-      nav.innerHTML = '';
-      for (let i = 1; i <= 23; i++) {
-        if (!daysData[i]) continue; 
-        const btn = document.createElement('div');
-        btn.className = `day-btn ${i === currentDay ? 'active' : ''}`;
-        btn.textContent = i === 1 ? `Day 1` : `Kanji Test ${i - 1}`;
-        btn.onclick = () => loadDay(i);
-        nav.appendChild(btn);
-      }
-    }
-
-    function loadDay(day) {
-      if(!daysData[day]) return;
-      currentDay = day;
-      currentQ = 0;
-      document.getElementById('mainContainerTitle').textContent = daysData[day].title;
-      renderDaysNav();
-      showQuestion();
-    }
-
-    function showQuestion() {
-      const container = document.getElementById('dynamicContentContainer');
-      const dayInfo = daysData[currentDay];
+    // =================================================================
+    // 2. CORE VIEW SWITCH ROUTINES
+    // =================================================================
+    function switchAppMode(mode) {
+      currentMode = mode;
+      document.getElementById("mode-quiz-btn").classList.toggle("active", mode === "quiz");
+      document.getElementById("mode-kanji-btn").classList.toggle("active", mode === "kanji");
       
-      if (!dayInfo || !dayInfo.mcqs || dayInfo.mcqs.length === 0) {
-        container.innerHTML = `<p style="color: #6b7280; text-align:center; padding: 40px 0;">⚠️ ဤရက်အတွက် မေးခွန်းများ မထည့်သွင်းရသေးပါ။</p>`;
-        document.getElementById('progressText').textContent = "-";
+      // Control visible navigation states based on whether Day 1 has Kanji metadata
+      const hasKanji = !!daysData[currentDay].kanjiList;
+      if (!hasKanji && mode === "kanji") {
+        selectDay(2); // Auto shift to an available kanji view if day 1 is selected
         return;
       }
+      
+      currentQuestionIndex = 0;
+      score = 0;
+      renderActiveContainer();
+    }
 
-      const q = dayInfo.mcqs[currentQ];
-      document.getElementById('progressText').textContent = `Question ${currentQ + 1} of ${dayInfo.mcqs.length}`;
-
-      let html = '';
-      if (q.isReading && q.passage) {
-        html += `<div class="reading-passage">${q.passage.replace(/\n/g, '<br>')}</div>`;
+    function selectDay(dayNum) {
+      currentDay = dayNum;
+      
+      // Sync tab highlight indicators
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById(`day-tab-${i}`).classList.toggle("active", i === dayNum);
+      }
+      
+      // Handle fallback redirection if trying to read kanji lists on a day without any
+      if (currentMode === "kanji" && !daysData[dayNum].kanjiList) {
+        currentMode = "quiz";
+        document.getElementById("mode-quiz-btn").classList.add("active");
+        document.getElementById("mode-kanji-btn").classList.remove("active");
       }
 
-      html += `<div class="question"><strong>${q.q}</strong></div>`;
-      html += `<div class="options" id="optionsGroup">`;
+      currentQuestionIndex = 0;
+      score = 0;
+      renderActiveContainer();
+    }
+
+    function renderActiveContainer() {
+      const targetBox = document.getElementById("main-content-card");
+      answered = false;
       
-      q.options.forEach((opt, i) => {
-        html += `<button onclick="selectAnswer(${i})" id="opt-${i}">${opt}</button>`;
+      if (currentMode === "quiz") {
+        renderQuizView(targetBox);
+      } else {
+        renderKanjiView(targetBox);
+      }
+    }
+
+    // =================================================================
+    // 3. RENDER MODULE: INTERACTIVE QUIZ ENGAGEMENT
+    // =================================================================
+    function renderQuizView(container) {
+      const activeData = daysData[currentDay];
+      const questionItem = activeData.mcqs[currentQuestionIndex];
+      
+      let passageHtml = "";
+      if (questionItem.isReading && questionItem.passage) {
+        passageHtml = `<div class="reading-passage">${questionItem.passage}</div>`;
+      }
+
+      let optionButtonsHtml = "";
+      questionItem.options.forEach((opt, index) => {
+        optionButtonsHtml += `<button id="opt-btn-${index}" onclick="checkUserAnswer(${index})">${opt}</button>`;
       });
-      html += `</div>`;
-      
-      html += `
+
+      container.innerHTML = `
+        <div class="progress-text">${activeData.title} &bull; Question ${currentQuestionIndex + 1} of ${activeData.mcqs.length}</div>
+        ${passageHtml}
+        <div class="question">${questionItem.q}</div>
+        <div class="options" id="options-block">${optionButtonsHtml}</div>
+        <div id="feedback-panel"></div>
         <div class="nav-container">
-          <button id="prevBtn" onclick="prevQuestion()">← Previous</button>
-          <button id="nextBtn" onclick="nextQuestion()">Next →</button>
+          <button id="next-action-btn" disabled onclick="handleNextStep()">Next Question</button>
         </div>
       `;
+    }
+
+    function checkUserAnswer(selectedIdx) {
+      if (answered) return;
+      answered = true;
       
-      container.innerHTML = html;
-      document.getElementById('prevBtn').disabled = currentQ === 0;
+      const questionItem = daysData[currentDay].mcqs[currentQuestionIndex];
+      const correctIdx = questionItem.ans;
+      const isCorrect = (selectedIdx === correctIdx);
       
-      const savedState = selectedAnswersState[`${currentDay}-${currentQ}`];
-      if (savedState !== undefined) {
-        revealAnswerUI(savedState, q.ans, q.expl);
+      if (isCorrect) score++;
+
+      // Highlight options buttons visually
+      document.getElementById(`opt-btn-${correctIdx}`).classList.add("correct-choice");
+      if (!isCorrect) {
+        document.getElementById(`opt-btn-${selectedIdx}`).classList.add("wrong-choice");
       }
-    }
 
-    function selectAnswer(selectedIndex) {
-      const q = daysData[currentDay].mcqs[currentQ];
-      selectedAnswersState[`${currentDay}-${currentQ}`] = selectedIndex;
-      revealAnswerUI(selectedIndex, q.ans, q.expl);
-    }
-
-    function revealAnswerUI(selected, correct, explanation) {
-      const buttons = document.querySelectorAll('#optionsGroup button');
-      
-      buttons.forEach((btn, i) => {
+      // Disable alternative options clicking
+      const actionBlock = document.getElementById("options-block").getElementsByTagName("button");
+      for (let btn of actionBlock) {
         btn.disabled = true;
-        if (i === correct) btn.classList.add('correct-choice');
-        if (i === selected && i !== correct) btn.classList.add('wrong-choice');
-      });
-
-      let fb = document.getElementById('feedbackBox');
-      if (!fb) {
-        fb = document.createElement('div');
-        fb.id = 'feedbackBox';
-        document.getElementById('dynamicContentContainer').insertBefore(fb, document.querySelector('.nav-container'));
       }
 
-      if (selected === correct) {
-        fb.className = "feedback correct";
-        fb.innerHTML = `🎉 <b>မှန်ကန်ပါတယ်!</b>`;
-      } else {
-        fb.className = "feedback wrong";
-        fb.innerHTML = `❌ <b>မှားယွင်းနေပါသည်။</b><br><span style="font-size:0.95rem; margin-top:5px; display:block;">${explanation}</span>`;
-      }
+      // Populate interactive feedback content panel
+      const feedbackPanel = document.getElementById("feedback-panel");
+      feedbackPanel.className = `feedback ${isCorrect ? 'correct' : 'wrong'}`;
+      feedbackPanel.innerHTML = `
+        <b>${isCorrect ? "✓ Correct (မှန်ကန်ပါတယ်)" : "✗ Incorrect (မှားယွင်းနေပါတယ်)"}</b>
+        <div style="margin-top: 5px; font-size: 0.95rem;">${questionItem.expl}</div>
+      `;
+
+      document.getElementById("next-action-btn").disabled = false;
     }
 
-    function nextQuestion() {
-      const totalQ = daysData[currentDay].mcqs.length;
-      if (currentQ < totalQ - 1) {
-        currentQ++;
-        showQuestion();
-      } else {
-        alert(`🎉 အောင်မြင်စွာ ပြီးဆုံးသွားပါပြီ။`);
-      }
-    }
-
-    function prevQuestion() {
-      if (currentQ > 0) {
-        currentQ--;
-        showQuestion();
-      }
-    }
-
-    // --- KANJI MODE FUNCTIONS (10 Kanji Blocks) ---
-    function loadKanjiSet(setNum) {
-      currentKanjiSet = setNum;
-      document.getElementById('kSet1').classList.toggle('active', setNum === 1);
-      document.getElementById('kSet2').classList.toggle('active', setNum === 2);
-
-      const startNum = (setNum - 1) * 10 + 1;
-      const endNum = setNum * 10;
+    function handleNextStep() {
+      currentQuestionIndex++;
+      const activeMcqs = daysData[currentDay].mcqs;
       
-      document.getElementById('mainContainerTitle').textContent = `Essential N3 Kanji (${startNum} - ${endNum})`;
-      document.getElementById('progressText').textContent = `Set ${setNum} of 2`;
+      if (currentQuestionIndex < activeMcqs.length) {
+        renderActiveContainer();
+      } else {
+        renderQuizSummaryCard();
+      }
+    }
 
-      const container = document.getElementById('dynamicContentContainer');
-      const list = kanjiData[setNum];
+    function renderQuizSummaryCard() {
+      const totalItems = daysData[currentDay].mcqs.length;
+      const targetBox = document.getElementById("main-content-card");
+      
+      targetBox.innerHTML = `
+        <div class="progress-text" style="text-align:center;">Challenge Summary</div>
+        <h2 style="text-align:center; margin-top:10px;">${daysData[currentDay].title}</h2>
+        <div class="score-badge">Final Score: ${score} / ${totalItems}</div>
+        <p style="text-align:center; color:#4b5563;">Excellent job finishing this review card module!</p>
+        <div class="nav-container" style="justify-content:center;">
+          <button onclick="selectDay(${currentDay === 3 ? 1 : currentDay + 1})">
+            ${currentDay === 3 ? "Restart From Day 1" : "Advance to Next Module Day"}
+          </button>
+        </div>
+      `;
+    }
 
-      let html = '<div class="kanji-grid">';
-      list.forEach((item, index) => {
-        const absoluteIndex = startNum + index;
-        html += `
+    // =================================================================
+    // 4. RENDER MODULE: STATIC KANJI LEXICON VIEW
+    // =================================================================
+    function renderKanjiView(container) {
+      const activeData = daysData[currentDay];
+      if (!activeData.kanjiList) return;
+
+      let listMarkup = "";
+      activeData.kanjiList.forEach(item => {
+        let cleanOnyomi = item.onyomi || "—";
+        let cleanKunyomi = item.kunyomi || "—";
+        
+        let exampleLines = "";
+        if (item.ex) {
+          const brokenExamples = item.ex.split(", ");
+          brokenExamples.forEach(line => {
+            exampleLines += `<div class="example-item">${line}</div>`;
+          });
+        }
+
+        listMarkup += `
           <div class="kanji-item">
             <div class="kanji-header">
-              <div class="kanji-char">${item.kanji}</div>
+              <div class="kanji-char">${item.char}</div>
               <div class="kanji-meta">
-                <div><b>No.</b> ${absoluteIndex}</div>
-                <div><b>Onyomi:</b> ${item.onyomi}</div>
-                <div><b>Kunyomi:</b> ${item.kunyomi}</div>
+                <div class="kanji-meaning">${item.meaning}</div>
               </div>
             </div>
-            <div class="kanji-meaning">အဓိပ္ပာယ်: ${item.meaning}</div>
+            <div class="readings-box">
+              <div class="reading-line"><b>音 (On):</b> ${cleanOnyomi}</div>
+              <div class="reading-line"><b>訓 (Kun):</b> ${cleanKunyomi}</div>
+            </div>
             <div class="example-box">
-              <div class="example-title">💡 Reading Differences Example Context:</div>
-              <div class="example-item">1. ${item.ex1}</div>
-              <div class="example-item">2. ${item.ex2}</div>
+              <div class="example-title">Core Context Vocabulary Examples:</div>
+              ${exampleLines}
             </div>
           </div>
         `;
       });
-      html += '</div>';
-      container.innerHTML = html;
+
+      container.innerHTML = `
+        <div class="progress-text">${activeData.title} &bull; Kanji Compendium</div>
+        <div class="kanji-grid">${listMarkup}</div>
+      `;
     }
 
-    // Initialize Page
+    // Initial Dynamic Script Entry Launch Point
     window.onload = () => {
-      loadDay(1);
+      renderActiveContainer();
     };
   </script>
 </body>
